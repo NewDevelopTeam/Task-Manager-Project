@@ -1,0 +1,72 @@
+﻿.logo {
+    font-family: 'Indie Flower', cursive;
+    color: white;
+    font-size: 25px; 
+}
+.Headline{
+    position: relative;
+}
+.ContentPart{
+    margin: 5px 0;
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 40px;
+    border-radius: 5px;
+}
+
+.Cards::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0ae";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+.PersonalBoards::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f007";
+    font-weight: 900;
+    top: 0;
+    left: 3px;
+}
+.MultiBoards::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0c0";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+
+.Notifications::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0f3";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+
+.TeamInvites::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f509";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+.Reminders::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f024";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
