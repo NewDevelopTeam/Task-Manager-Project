@@ -1,0 +1,41 @@
+﻿@section navTabs {
+    <div class="navbar-collapse d-flex justify-content-between flex-nowrap">
+        <div>
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" asp-area="" asp-controller="Pages" asp-action="Cards">
+                        <i class="fas fa-tasks fa-2x"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" asp-area="" asp-controller="Pages" asp-action="Boards">
+                        <i class="fas fa-columns fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav flex-row-reverse">
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" asp-area="">
+                        <i class="fas fa-user-circle fa-2x"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" asp-area="" asp-controller="Pages" asp-action="Notifications">
+                        <i class="fas fa-bell fa-2x" style="color:#b2adf7"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+
+<div class="NotificatonsPage">
+    <div class="Headline Notifications pl-4">Уведомления</div>
+    <div class="Headline TeamInvites pl-4">Приглашения в команды</div>
+    <div class="ContentPart d-flex justify-content-center">Контентная часть в разработке</div>
+
+    <div class="Headline Reminders pl-4">Напоминания</div>
+    <div class="ContentPart d-flex justify-content-center">Контентная часть в разработке</div>
+</div>
