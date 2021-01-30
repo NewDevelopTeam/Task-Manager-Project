@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using TaskManager.Models;
 
 namespace TaskManager
 {
@@ -23,6 +25,17 @@ namespace TaskManager
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = Configuration.GetConnectionString("DefaulConnection");
+
+            services.AddDbContext<AccountContext>(options =>
+                options.UseSqlServer(connection));
+
+            services.AddAuthentication("CookieAuthenticationDefaults.AuthenticationScheme")
+                 .AddCookie("CookieAu", config =>
+                 {
+                     config.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                 });
+
             services.AddControllersWithViews();
         }
 
