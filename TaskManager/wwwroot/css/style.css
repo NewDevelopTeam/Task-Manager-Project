@@ -1,4 +1,16 @@
-﻿.logo {
+﻿html,
+body {
+    min-width: 290px;
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+.logo {
     font-family: 'Indie Flower', cursive;
     color: white;
     font-size: 25px; 
