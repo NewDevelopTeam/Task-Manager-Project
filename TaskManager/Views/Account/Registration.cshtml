@@ -1,0 +1,64 @@
+﻿@model TaskManager.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="container-md my-auto">
+    <div class="auth-form border border-dark rounded mx-auto col-6" style="min-width: 260px;">
+        <form asp-action="Registration" asp-controller="Account" asp-antiforgery="true">
+            <ul class="nav d-flex flex-nowrap">
+                <li class="flex-fill text-center nav-item border-bottom m-3 my-2">
+                    <a class="nav-link text-dark" asp-action="Login" asp-controller="Account">
+                        Вход
+                    </a>
+                </li>
+                <li class="nav-item border-bottom flex-fill text-center m-3 my-2">
+                    <span class="nav-link active bg-secondary text-white">
+                        Регистрация
+                    </span>
+                </li>
+            </ul>
+
+            <div class="d-flex flex-nowrap align-items-lg-stretch">
+                <div class="flex-fill mt-3 mr-2">
+                    <div class="form-group">
+                        <input asp-for="Email" class="form-control" placeholder="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Пароль" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Подтвердите пароль" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Зарегистрировать" class="register-button btn btn-dark btn-primary flex-fill w-100" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Footer{
+    <footer class="text-center footer-team pb-4">
+        <div>© 2021 WebDevTeam4Study</div>
+    </footer>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
