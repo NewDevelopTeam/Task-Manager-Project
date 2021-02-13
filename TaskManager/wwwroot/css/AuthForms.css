@@ -1,0 +1,78 @@
+﻿.form-group{
+    position:relative;
+}
+
+.form-group i{
+    position: absolute;
+    top: 9px;
+    right: 90px;
+    visibility: hidden;
+}
+.form-error__message{
+    display:block;
+    position: relative;
+}
+.form-error__message #case-error{
+    display:block; 
+    color: #b94a48;
+    position: absolute;
+    top: 3px;
+    left: 18px;
+}
+.input-validation-error{
+    display:block;
+
+}
+
+.form-control:focus {
+    border-color: #66CCE8;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 5px rgba(102,204,232,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 5px rgba(102,204,232,.6);
+}
+
+
+.form-group .input-validation-error {
+    border-color: #e96666;
+    color: #e96666;
+}
+    .form-group .input-validation-error:focus {
+        border-color: #e96666;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 5px rgba(233,102,102,.6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 5px rgba(233,102,102,.6);
+    }
+    .form-group #case-error::before {
+        position: absolute;
+        display: inline-block;
+        font-family: 'Font Awesome 5 Free';
+        content: "\f06a";
+        font-weight: 600;
+        top: 0px;
+        left: -16px;
+    }
+
+.form-group .valid {
+    border-color: #66e998;
+}
+
+.validation-summary-errors.alert{
+    margin-bottom: 0px;
+}
+
+.validation-summary-errors ul {
+    padding-left: 0;
+    list-style: none;
+    margin-left: 15px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+    .validation-summary-errors ul::before {
+        position: absolute;
+        display: inline-block;
+        font-family: 'Font Awesome 5 Free';
+        content: "\f06a";
+        font-weight: 600;
+        top: 11px;
+        left: 10px;
+    }
