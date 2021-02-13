@@ -1,4 +1,5 @@
-﻿html,
+﻿
+html,
 body {
     min-width: 290px;
     height: 100%;
@@ -13,7 +14,7 @@ body {
 .logo {
     font-family: 'Indie Flower', cursive;
     color: white;
-    font-size: 25px; 
+    font-size: 25px;
 }
 .Headline{
     position: relative;
@@ -81,4 +82,29 @@ body {
     font-weight: 900;
     top: 0;
     left: 0;
+}
+
+.fade{
+    min-width: 290px;
+    height: 100%;
+}
+
+.btn-close.close{
+    font-size: 2.0rem;
+}
+.modal-dialog {
+    position: relative;
+    top: 5% !important;
+}
+.modal-header__profile{
+    font-size: 20px;
+    margin: auto 10px;
+}
+.profile{
+    margin-left: 6px;
+}
+.profile-info__description {
+    font-size: 15px;
+    margin-bottom: 62px;
+    margin-left: 10px;
 }
