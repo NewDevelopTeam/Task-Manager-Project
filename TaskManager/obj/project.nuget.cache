@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0LgwNznfPMxeEmw+Xf4byPtbQpXXUZ8yrpUCY0nwlv3KqQqG5Oykk58C5JFzAH3u//qZIdtke05HRndJnY2onQ==",
+  "dgSpecHash": "4lKJuwa0/Nv0hMfFt7rv17I4Y/0Empa4jE+orCvq0tRIF6u/2mEueeZjYsnCdyh5mRsQPhh4nvD/NWWfNRnWjg==",
   "success": true,
   "projectFilePath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
