@@ -1,0 +1,5 @@
+USE plusdashdb;
+GO
+
+ALTER TABLE Users ADD Salt VARCHAR(20) NULL;
+GO
