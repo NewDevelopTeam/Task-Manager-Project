@@ -1,0 +1,86 @@
+﻿@model TaskManager.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="Content-part">
+    <main role="main" class="wrapper d-flex h-100 align-items-center justify-content-center flex-nowrap">
+        <div class="container my-auto py-2" style="height: 370px">
+            <div class="auth-form border border-dark shadow rounded mx-auto col-6" style="min-width: 260px;">
+                <form class="needs-validation" asp-action="Registration" asp-controller="Account" asp-antiforgery="true" autocomplete="off" novalidate>
+                    <div class="validation mt-4" asp-validation-summary="ModelOnly"></div>
+                    <ul class="nav d-flex flex-nowrap pt-3">
+                        <li class="flex-fill text-center nav-item border-bottom m-3 my-2">
+                            <a class="nav-link text-dark" asp-action="Login" asp-controller="Account">
+                                Вход
+                            </a>
+                        </li>
+                        <li class="nav-item border-bottom flex-fill text-center m-3 my-2">
+                            <span class="nav-link active bg-secondary text-white">
+                                Регистрация
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex flex-nowrap">
+                        <div class="flex-fill mt-3 mr-2">
+                            <div class="form-group pb-4">
+                                <input id="case" asp-for="Email" class="form-control" placeholder="Email" />
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span asp-validation-for="Email" class="form-error__message"></span>
+                            </div>
+                            <div class="form-group pb-4">
+                                <input id="case" type="password" asp-for="Password" class="form-control" placeholder="Пароль" />
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span asp-validation-for="Password" class="form-error__message"></span>
+                            </div>
+                            <div class="form-group pb-4">
+                                <input id="case" type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Подтверждение пароля" />
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span asp-validation-for="ConfirmPassword" class="form-error__message"></span>
+                            </div>
+                            <div class="form-group pb-2">
+                                <input type="submit" value="Зарегистрировать" class="register-button btn btn-dark btn-primary flex-fill w-100" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+@section Footer{
+    <footer class="text-center footer-team pb-2">
+        <div>© 2021 WebDevTeam4Study</div>
+    </footer>
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/AuthForms.css" asp-append-version="true" />
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

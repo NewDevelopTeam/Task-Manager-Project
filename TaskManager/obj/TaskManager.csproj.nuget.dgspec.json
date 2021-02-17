@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TaskManagerProject\\TaskManager\\TaskManager\\TaskManager.csproj": {}
+    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj": {}
   },
   "projects": {
-    "D:\\TaskManagerProject\\TaskManager\\TaskManager\\TaskManager.csproj": {
+    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TaskManagerProject\\TaskManager\\TaskManager\\TaskManager.csproj",
+        "projectUniqueName": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj",
         "projectName": "TaskManager",
-        "projectPath": "D:\\TaskManagerProject\\TaskManager\\TaskManager\\TaskManager.csproj",
-        "packagesPath": "C:\\Users\\Viktor\\.nuget\\packages\\",
-        "outputPath": "D:\\TaskManagerProject\\TaskManager\\TaskManager\\obj\\",
+        "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Viktor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -43,6 +44,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Cookies": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -61,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
