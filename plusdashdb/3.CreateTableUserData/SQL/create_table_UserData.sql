@@ -1,18 +1,19 @@
-IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE ID = OBJECT_ID(N'TrackerDB'))
-USE TrackerDB;
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE ID = OBJECT_ID(N'plusdashdb'))
+USE plusdashdb;
 
 GO
 
-IF OBJECT_ID('Users', 'u') IS NULL
+IF OBJECT_ID('UserData', 'u') IS NULL
 CREATE TABLE UserData
 (
-	UserId INT IDENTITY(1, 1) PRIMARY KEY,
-	FirstName NVARCHAR(50),
-	LastName NVARCHAR(50),
+	UserId INT IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+	FirstName NVARCHAR(50) NOT NULL,
+	LastName NVARCHAR(50) NOT NULL,
 	MiddleName NVARCHAR(50),
-	UserRole NVARCHAR(50),
-	UserONOFFLine BIT,
-	LoginId INT,
+	OwnTeams NVARCHAR(50),
+	TeamsParticipant NVARCHAR(50),
+	UserONOFFLine BIT NOT NULL,
+	LoginId INT NOT NULL,
 
-	FOREIGN KEY (LoginId)REFERENCES UserLogIn(LoginId) ON DELETE NO ACTION
+	FOREIGN KEY (LoginId)REFERENCES Users(LoginId) ON DELETE NO ACTION
 );
