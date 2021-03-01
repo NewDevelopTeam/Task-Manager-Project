@@ -1,0 +1,13 @@
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE ID = OBJECT_ID(N'TrackerDB'))
+USE TrackerDB;
+
+GO
+
+IF OBJECT_ID('UserLogIn', 'u') IS NULL
+CREATE TABLE UserLogIn
+(
+	LoginId INT IDENTITY(1, 1) PRIMARY KEY,
+	Email NCHAR(50),
+	Password NVARCHAR(50),
+	Salt BINARY(16)
+)

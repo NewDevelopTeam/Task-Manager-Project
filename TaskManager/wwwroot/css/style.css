@@ -1,0 +1,110 @@
+﻿
+html,
+body {
+    min-width: 290px;
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+.logo {
+    font-family: 'Indie Flower', cursive;
+    color: white;
+    font-size: 25px;
+}
+.Headline{
+    position: relative;
+}
+.ContentPart{
+    margin: 5px 0;
+    font-size: 15px;
+    border: 1px solid black;
+    padding: 40px;
+    border-radius: 5px;
+}
+
+.Cards::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0ae";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+.PersonalBoards::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f007";
+    font-weight: 900;
+    top: 0;
+    left: 3px;
+}
+.MultiBoards::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0c0";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+
+.Notifications::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0f3";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+
+.TeamInvites::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f509";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+.Reminders::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f024";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+
+.fade{
+    min-width: 290px;
+    height: 100%;
+}
+
+.btn-close.close{
+    font-size: 2.0rem;
+}
+.modal-dialog {
+    position: relative;
+    top: 5% !important;
+}
+.modal-header__profile{
+    font-size: 20px;
+    margin: auto 10px;
+}
+.profile{
+    margin-left: 6px;
+}
+.profile-info__description {
+    font-size: 15px;
+    margin-bottom: 62px;
+    margin-left: 10px;
+}

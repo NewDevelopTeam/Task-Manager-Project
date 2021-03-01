@@ -1,0 +1,68 @@
+﻿@section navTabs {
+    <div class="navbar-collapse d-flex justify-content-between flex-nowrap">
+        <div>
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" asp-area="" asp-controller="Pages" asp-action="Cards">
+                        <i class="fas fa-tasks fa-2x" style="color:#b2adf7"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" asp-area="" asp-controller="Pages" asp-action="Boards">
+                        <i class="fas fa-columns fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav flex-row-reverse">
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" data-toggle="modal" data-target="#myModal">
+                        <i class="fas fa-user-circle fa-2x"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light px-2" asp-area="" asp-controller="Pages" asp-action="Notifications">
+                        <i class="fas fa-bell fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+
+<div class="container h-100 pt-2">
+    <div class="CardsPage">
+        <div class="Headline Cards pl-4">Мои карточки</div>
+        <div class="ContentPart d-flex justify-content-center">Контентная часть в разработке</div>
+    </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog" style="min-width: 290px">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-header__profile">Учетная запись</p>
+                <button type="button" class="close btn-close btn-lg" aria-label="Close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile d-flex flex-nowrap align-items-center">
+                    <p class="profile-image mr-2">
+                        <i class="fas fa-user-circle fa-5x"></i>
+                    </p>
+                    <div class="profile-info">
+                        <div class="profile-info__description">Аккаунт: @User.Identity.Name</div>
+                    </div>
+                </div>
+                <div class="d-flex flex-nowrap">
+                    <button type="button" class="btn btn-sm btn-dark text-white mx-2">Редактировать профиль</button>
+                    <div>
+                        <form asp-action="Logout" asp-controller="Account" asp-antiforgery="true">
+                            <button type="submit" class="btn btn-sm btn-dark text-white">Выйти</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
