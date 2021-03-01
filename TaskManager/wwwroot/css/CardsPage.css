@@ -1,0 +1,73 @@
+﻿.Cards{
+    font-size: 17px;
+}
+.Cards::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0ae";
+    font-weight: 900;
+    top: 0;
+    left: 0;
+}
+
+.card-add{
+    position: relative;
+}
+
+.cards-list{
+    max-width: 600px;
+}
+
+.card-add__content{
+    padding-left: 18px;
+}
+.card-add__content::before {
+    position:absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f067";
+    font-weight: 900;
+    top: 6px;
+    left: 9px;
+}
+
+.adding-card__header{
+    font-size: 16px;
+}
+
+.card-description{
+    font-size: 16px;
+}
+
+.card-adding__form{
+    border: 1px solid black;
+}
+
+#CardDescription-error {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    color: #b94a48;
+}
+#CardDescription-error::before {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f06a";
+    font-weight: 600;
+    top: 0px;
+    left: 2px;
+}
+
+.input-validation-error{
+    border-color: #b94a48;
+}
+
+.listofCards{
+    min-width: 260px;
+    max-width: 600px;
+}
+.card-header{
+    font-size: 15px;
+}
