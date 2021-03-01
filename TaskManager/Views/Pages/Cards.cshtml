@@ -1,6 +1,4 @@
-﻿@model TaskManager.ViewModels.AddCardViewModel
-
-@{
+﻿@{
     ViewData["Title"] = "Мои карточки";
 }
 
@@ -89,8 +87,8 @@
             <form class="needs-validation" asp-action="" asp-controller="" novalidate>
                 <div class="modal-body">
                     <h2 class="card-description">Описание карточки</h2>
-                    <textarea asp-for="CardDescription" class="card-adding__form w-100 p-1" placeholder="Ввести текст для карточки" rows="4"></textarea>
-                    <span asp-validation-for="CardDescription" class="form-error__message"></span>
+                    <textarea class="card-adding__form w-100 p-1" placeholder="Ввести текст для карточки" rows="4"></textarea>
+                    <span class="form-error__message"></span>
                     <div>
                         <input type="submit" class="edit-card__button btn btn-dark w-100 mt-2" value="Подтвердить изменения" />
                     </div>
@@ -110,8 +108,8 @@
             <form class="needs-validation" asp-action="" asp-controller="" novalidate>
                 <div class="modal-body">
                     <h2 class="card-description">Описание карточки</h2>
-                    <textarea asp-for="CardDescription" class="card-adding__form w-100 p-1" placeholder="Ввести текст для карточки" rows="4"></textarea>
-                    <span asp-validation-for="CardDescription" class="form-error__message"></span>
+                    <textarea class="card-adding__form w-100 p-1" placeholder="Ввести текст для карточки" rows="4"></textarea>
+                    <span class="form-error__message"></span>
                     <div>
                         <input type="submit" class="add-card__button btn btn-dark w-100 mt-2" value="Добавить карточку" />
                     </div>
