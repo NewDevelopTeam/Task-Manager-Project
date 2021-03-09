@@ -6,9 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TaskManager.Models
 {
-    public class AccountContext: DbContext
+    public class AccountContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<PersonalCard> PerCards {get; set;}
         public AccountContext(DbContextOptions<AccountContext> options):base(options)
         {
             Database.EnsureCreated();
