@@ -11,7 +11,7 @@ namespace TaskManager.Models
         public DbSet<User> Users { get; set; }
         public AccountContext(DbContextOptions<AccountContext> options):base(options)
         {
-            Database.EnsureCreated();
+            
         }
 
     }
