@@ -7,12 +7,9 @@ var arr_from_json = JSON.parse(value);
 	const listContainer = document.querySelector('.listofCards');
 
     const objOfCards = listofCards.reduce((acc, obj) => {
-		acc[obj.Id] = obj;
-		console.log(obj.Id);
+		acc[obj.RowNo] = obj;
 		return acc
 	}, {});
-
-	console.log(objOfCards);
 
 	renderAllCards(objOfCards);
 
@@ -32,6 +29,7 @@ var arr_from_json = JSON.parse(value);
 		function ListItemTemplate({ Id, CardDescription} = {}) {
 			const li = document.createElement('li');
 			li.classList.add("card");
+			li.setAttribute("data-id", Id);
 
 			const cardHeader = document.createElement('div');
 			cardHeader.classList.add("card-header");
@@ -75,5 +73,5 @@ var arr_from_json = JSON.parse(value);
 		}
 
 		listContainer.appendChild(fragment);
-    }
+	}
 })(arr_from_json);
