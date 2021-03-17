@@ -71,3 +71,16 @@
 .card-header{
     font-size: 15px;
 }
+
+.sortable-chosen{
+    box-shadow: 8px 8px 32px #E1E1E1;
+}
+.sortable-drag {
+    opacity: 0;
+}
+.dragged-item{
+    opacity: 1 !important;
+}
+.sortable-ghost{
+    opacity: 0;
+}

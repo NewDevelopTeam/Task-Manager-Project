@@ -39,11 +39,13 @@ namespace TaskManager.Controllers
 
             string userEmail = User.Identity.Name;
             User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            int numbOfCards = await db.PerCards.CountAsync(n => n.User == user);
 
             db.PerCards.Add(new PersonalCard
             {
                 CardDescription = card.CardDescription,
                 UserId = user.UserId,
+                RowNo = numbOfCards,
             });
 
             await db.SaveChangesAsync();
@@ -51,6 +53,7 @@ namespace TaskManager.Controllers
             return RedirectToAction("Cards", "Pages");
         }
 
+        [Authorize]
         [HttpPost]
         public void DeleteCard([FromBody] string cardId)
         {   
@@ -60,6 +63,7 @@ namespace TaskManager.Controllers
             db.SaveChanges();
         }
 
+        [Authorize]
         [HttpPost]
         public void EditCards([FromBody]EditCardViewModel cardInfo)
         {
@@ -71,6 +75,26 @@ namespace TaskManager.Controllers
 
             db.PerCards.Update(card);
             db.SaveChanges();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public void updatecards(List<string> data)
+        {
+            List<int> numOfCards = data.Select(s => int.Parse(s)).ToList();
+           
+            int count = 0;
+
+            foreach (var idCard in numOfCards)
+            {
+                PersonalCard item = db.PerCards.Where(x => x.Id == idCard).FirstOrDefault();
+                item.RowNo = count;
+                db.PerCards.Update(item);
+                db.SaveChanges();
+
+                count++;
+            }
+
         }
     }
 }
