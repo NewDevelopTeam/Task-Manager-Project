@@ -99,6 +99,9 @@
     .card-personal:hover {
         background-color: #ebecf0;
     }
+    .card-personal:hover .card-button {
+        visibility: visible;
+    }
 
 .card-wrapper{
     position: relative;
@@ -115,11 +118,14 @@
 }
 
 .card-button {
+    visibility:hidden;
     border-radius: 50%;
     width: 26px;
     height: 26px;
     margin: 0px 0px 2px 0px;
 }
+
+
 
 .card-delete {
     position: relative;
