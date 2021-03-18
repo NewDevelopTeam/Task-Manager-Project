@@ -3,7 +3,7 @@
 	$('.card-edit').click(function () {
 		
 		let idValue = event.target.id;
-		let textCard = $(this).closest('li.card').find('.card-header').text();
+		let textCard = $(this).closest('li.card-personal').find('.card-description').text();
 
 		$('.card-adding__form').val(textCard);
 		$('.edit-card__button').attr('id', idValue);
