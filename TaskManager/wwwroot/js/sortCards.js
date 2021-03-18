@@ -11,9 +11,16 @@ $(document).ready(function () {
 		forceFallback: true,
 		fallbackClass: "dragged-item",
 		dataIdAttr: 'data-id',
+		filter: '.isNotDraggable',
 		onSort: function () {
 			var numOfCards = sortable.toArray();
 			updatePositions(numOfCards);
+		},
+		onStart: function () {
+			$('html').addClass("draggable-cursor");
+		},
+		onEnd: function () {
+			$('html').removeClass("draggable-cursor");
 		}
 	});
 })

@@ -37,7 +37,9 @@
 }
 
 .card-description{
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
 }
 
 .card-adding__form{
@@ -66,21 +68,96 @@
 
 .listofCards{
     min-width: 260px;
-    max-width: 600px;
+    max-width: 300px;
 }
 .card-header{
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .sortable-chosen{
     box-shadow: 8px 8px 32px #E1E1E1;
 }
 .sortable-drag {
-    opacity: 0;
+    opacity: 1 !important;
 }
 .dragged-item{
     opacity: 1 !important;
 }
-.sortable-ghost{
-    opacity: 0;
+.sortable-ghost {
+   visibility:hidden;
 }
+
+.draggable-cursor{
+    cursor: move !important; /* fallback: no `url()` support or images disabled */
+    cursor: -webkit-grabbing !important; /* Chrome 1-21, Safari 4+ */
+    cursor: -moz-grabbing !important; /* Firefox 1.5-26 */
+    cursor: grabbing !important; /* W3C standards syntax, should come least */
+}
+.card-personal {
+    background-color: white;
+}
+    .card-personal:hover {
+        background-color: #ebecf0;
+    }
+
+.card-wrapper{
+    position: relative;
+}
+.card-wrapper::after {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    content: "\f7a4";
+    font-weight: 600;
+    bottom: -20px;
+    left: 0px;
+    color: slategrey;
+}
+
+.card-button {
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    margin: 0px 0px 2px 0px;
+}
+
+.card-delete {
+    position: relative;
+}
+    .card-delete:hover {
+        background-color: #ff5151;
+        cursor: pointer;
+    }
+    .card-delete:hover::after {
+        color: black;
+    }
+    .card-delete:after {
+        position: absolute;
+        display: inline-block;
+        font-family: 'Font Awesome 5 Free';
+        content: "\f05e";
+        font-weight: 600;
+        top: 6px;
+        left: 6px;
+        color: black;
+        color: red;
+    }
+
+.card-edit {
+    position: relative;
+}
+    .card-edit:hover {
+      background-color: #b2adf7;
+      cursor: pointer;
+    }
+    .card-edit:after {
+        position: absolute;
+        display: inline-block;
+        font-family: 'Font Awesome 5 Free';
+        content: "\f044";
+        font-weight: 600;
+        top: 6px;
+        left: 7px;
+        color: black;
+    }
+

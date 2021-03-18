@@ -26,43 +26,47 @@ var arr_from_json = JSON.parse(value);
 			})
         }
 
-		function ListItemTemplate({ Id, CardDescription} = {}) {
+		function ListItemTemplate({ Id, CardDescription } = {}) {
+
 			const li = document.createElement('li');
-			li.classList.add("card");
+			li.classList.add("card-personal", "p-2", "card-background", "border", "border-secondary", "rounded");
 			li.setAttribute("data-id", Id);
 
+			const cardWrapper = document.createElement('div');
+			cardWrapper.classList.add("card-wrapper", "d-flex", "flex-nowrap", "mb-4");
+
 			const cardHeader = document.createElement('div');
-			cardHeader.classList.add("card-header");
+			cardHeader.classList.add("card-description", "mr-1", "flex-grow-1");
 			cardHeader.textContent = CardDescription;
 
 			const cardPanel = document.createElement('div');
-			cardPanel.classList.add("card-panel", "d-flex", "flex-wrap", "m-2", "flex-row-reverse");
+			cardPanel.classList.add("card-panel", "d-flex", "flex-column", "flex-wrap", "align-selt-start");
 
-			const cardEdit = document.createElement('button');
-			cardEdit.classList.add("card-edit", "btn", "btn-sm", "btn-dark", "m-1");
-			cardEdit.setAttribute("data-toggle", "modal");
-			cardEdit.setAttribute("data-target", "#edit-card");
-			cardEdit.textContent = "Редактировать";
-			cardEdit.id = Id;
-
-			const cardDelete = document.createElement('button');
-			cardDelete.classList.add("card-delete", "btn", "btn-sm", "btn-danger", "m-1");
+			const cardDelete = document.createElement('div');
+			cardDelete.classList.add("card-delete", "card-button");
 			cardDelete.setAttribute("data-toggle", "modal");
 			cardDelete.setAttribute("data-target", "#delete-card");
-			cardDelete.textContent = "Удалить";
 			cardDelete.id = Id;
+
+			const cardEdit = document.createElement('div');
+			cardEdit.classList.add("card-edit", "card-button");
+			cardEdit.setAttribute("data-toggle", "modal");
+			cardEdit.setAttribute("data-target", "#edit-card");
+			cardEdit.id = Id;
 
 			cardPanel.appendChild(cardDelete);
 			cardPanel.appendChild(cardEdit);
 
-			li.appendChild(cardHeader);
-			li.appendChild(cardPanel);
+			cardWrapper.appendChild(cardHeader);
+			cardWrapper.appendChild(cardPanel);
+
+			li.appendChild(cardWrapper);
 
 			return li;
 		}
 		function EmptyItemTemplate() {
 			const li = document.createElement('li');
-			li.classList.add("card");
+			li.classList.add("card", "isNotDraggable");
 
 			const cardHeader = document.createElement('div');
 			cardHeader.classList.add("card-header", "py-4");
