@@ -1,4 +1,6 @@
-﻿@section navTabs {
+﻿@model TaskManager.ViewModels.BoardsPageViewModels.BoardsPageViewModel
+
+@section navTabs {
     <div class="navbar-collapse d-flex justify-content-between flex-nowrap">
         <div>
             <ul class="navbar-nav flex-row">
@@ -31,13 +33,66 @@
     </div>
 }
 
-<div class="container h-100 pt-2">
-    <div class="BoardsPage">
-        <div class="Headline PersonalBoards pl-4">Персональные доски</div>
-        <div class="ContentPart d-flex justify-content-center">Контентная часть в разработке</div>
+<div class="container pt-2 flex-grow-1">
+    <div class="BoardsPage mb-5">
+        <div class="Headline boardsHeader PersonalBoards pl-4 my-2">Персональные доски</div>
 
-        <div class="Headline MultiBoards pl-4">Многопользовательские доски</div>
-        <div class="ContentPart d-flex justify-content-center">Контентная часть в разработке</div>
+        <button class="personalBoard-add btn btn-dark my-2" data-toggle="modal" data-target="#add-personalBoard">
+            <div class="Board-add__content">Добавить доску</div>
+        </button>
+        <div class="mb-1">Вам доступно @Model.PersonalDashboards.Count персональных досок</div>
+        <div class="allPersonalBoards d-flex flex-wrap mb-3" id="personalBoards" data-boards="@ViewBag.jsonPersBoards"></div>
+
+        <div class="Headline boardsHeader MultiBoards pl-4">Многопользовательские доски</div>
+        <button class="multiBoard-add btn btn-dark my-2" data-toggle="modal" data-target="#add-multiBoard">
+            <div class="Board-add__content">Добавить доску</div>
+        </button>
+        <p class="mb-1">Вам доступно @Model.MultiDashboards.Count многопользовательских досок</p>
+        <div class="allMultiBoards d-flex flex-wrap mb-3" id="multiBoards" data-boards="@ViewBag.jsonMultiBoards"></div>
+    </div>
+</div>
+
+<div id="add-personalBoard" class="modal fade" role="dialog" style="min-width: 290px">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header adding-card__header align-items-center">
+                <div>Добавление персональной доски</div>
+                <button type="button" class="close btn-close btn-lg" aria-label="Close" data-dismiss="modal">&times;</button>
+            </div>
+            <form method="get" class="needs-validation" asp-action="AddPersonalBoard" asp-controller="Boards" novalidate>
+                <div class="modal-body">
+                    <h2 class="card-description">Название доски</h2>
+                    <textarea class="personalBoard-adding__form w-100 p-1" asp-for="PersonalBoardName" placeholder="Введите название для доски" rows="4"></textarea>
+                    <span asp-validation-for="PersonalBoardName"></span>
+                    <span class="form-error__message"></span>
+                    <div>
+                        <input type="submit" class="add-personalBoard__button btn btn-dark w-100 mt-2" value="Добавить доску" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="add-multiBoard" class="modal fade" role="dialog" style="min-width: 290px">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header adding-card__header align-items-center">
+                <div>Добавление многопользовательской доски</div>
+                <button type="button" class="close btn-close btn-lg" aria-label="Close" data-dismiss="modal">&times;</button>
+            </div>
+            <form method="get" class="needs-validation" asp-action="AddMultiBoard" asp-controller="Boards" novalidate>
+                <div class="modal-body">
+                    <h2 class="card-description">Название доски</h2>
+                    <textarea class="personalBoard-adding__form w-100 p-1" asp-for="MultiBoardName" placeholder="Введите название для доски" rows="4"></textarea>
+                    <span asp-validation-for="MultiBoardName"></span>
+                    <span class="form-error__message"></span>
+                    <div>
+                        <input type="submit" class="add-card__button btn btn-dark w-100 mt-2" value="Добавить доску" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -69,3 +124,17 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+
+    <script type="module" src="~/js/BoardsPage/showPersonalBoards.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/BoardsPage/showMultiBoards.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/BoardsPage/choosePersonalBoard.js" asp-append-version="true"></script>
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/cssReset.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/BoardsPage.css" asp-append-version="true" />
+}
