@@ -16,7 +16,7 @@ namespace TaskManager.Controllers
 {
     public class CardsController: Controller
     {
-        public AccountContext db;
+        private AccountContext db;
         public CardsController(AccountContext context)
         {
             db = context;
@@ -79,7 +79,7 @@ namespace TaskManager.Controllers
 
         [Authorize]
         [HttpGet]
-        public void updatecards(List<string> data)
+        public void Updatecards(List<string> data)
         {
             List<int> numOfCards = data.Select(s => int.Parse(s)).ToList();
            
