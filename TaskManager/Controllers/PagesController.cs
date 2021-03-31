@@ -25,7 +25,7 @@ namespace TaskManager.Controllers
             User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
             int userId = user.UserId;
 
-             var listOfCards = db.PerCards.Where(p => p.UserId == userId).ToList();
+             List<PersonalCard> listOfCards = db.PerCards.Where(p => p.UserId == userId).ToList();
 
              string str  = JsonConvert.SerializeObject(listOfCards);
 
@@ -37,7 +37,7 @@ namespace TaskManager.Controllers
         [Authorize]
         public IActionResult Boards()
         {
-            return View();
+            return RedirectToAction("ShowBoards", "Boards");
         }
 
         [Authorize]
