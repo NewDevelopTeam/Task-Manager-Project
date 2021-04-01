@@ -65,7 +65,7 @@ namespace TaskManager.Controllers
 
         [Authorize]
         [HttpPost]
-        public void EditCards([FromBody]EditCardViewModel cardInfo)
+        public JsonResult EditCards([FromBody]EditCardViewModel cardInfo)
         {
             int id = Int32.Parse(cardInfo.CardId);
 
@@ -75,6 +75,17 @@ namespace TaskManager.Controllers
 
             db.PerCards.Update(card);
             db.SaveChanges();
+
+
+            string userEmail = User.Identity.Name;
+            User user = db.Users.FirstOrDefault(u => u.Email == userEmail);
+            int userId = user.UserId;
+
+            List<PersonalCard> listOfCards = db.PerCards.Where(p => p.UserId == userId).ToList();
+
+            string cards = JsonConvert.SerializeObject(listOfCards);
+
+            return Json(new {jsonCards = cards });
         }
 
         [Authorize]
