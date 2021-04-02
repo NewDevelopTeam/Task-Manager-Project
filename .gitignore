@@ -17,5 +17,5 @@ logger.txt
 [Rr]eleases/
 x64/
 x86/
-
+bin
 .vs
