@@ -99,5 +99,35 @@ namespace TaskManager.Controllers
             PersonalBoardViewModel obj = new PersonalBoardViewModel {};
             return View("~/Views/Pages/PersDashboard.cshtml", obj);
         }
+        [Authorize]
+        [HttpGet]
+        public void UpdatePersonalBoards(List<string> data)
+        {
+            List<int> numOfBoards = data.Select(s => int.Parse(s)).ToList();
+            int count = 0;
+            foreach (var idBoard in numOfBoards)
+            {
+                PersonalDashboard board = db.PerDashBoards.Where(x => x.Id == idBoard).FirstOrDefault();
+                board.PositionNo = count;
+                db.PerDashBoards.Update(board);
+                db.SaveChanges();
+                count++;
+            }
+        }
+        [Authorize]
+        [HttpGet]
+        public void UpdateMultiBoards(List<string> data)
+        {
+            List<int> numOfBoards = data.Select(s => int.Parse(s)).ToList();
+            int count = 0;
+            foreach (var idBoard in numOfBoards)
+            {
+                MultiDashboard board = db.MultiDashBoards.Where(x => x.Id == idBoard).FirstOrDefault();
+                board.PositionNo = count;
+                db.MultiDashBoards.Update(board);
+                db.SaveChanges();
+                count++;
+            }
+        }
     }
 }
