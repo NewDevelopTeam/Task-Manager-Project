@@ -69,7 +69,9 @@ console.log(boards);
             boardEditButtonText.textContent = "Редактировать";
 
             const boardDeleteButton = document.createElement('div');
-            boardDeleteButton.classList.add('boardButton', 'button-state', 'button-state__delete', 'hover-slide-up', 'flex-grow-1');
+            boardDeleteButton.classList.add('boardButton', 'personalBoard-delete', 'button-state', 'button-state__delete', 'hover-slide-up', 'flex-grow-1');
+            boardDeleteButton.setAttribute("data-toggle", "modal");
+            boardDeleteButton.setAttribute('data-target', '#delete-personalBoard');
 
             const boardDeleteButtonText = document.createElement('div');
             boardDeleteButtonText.classList.add('boardButton-content');

@@ -129,5 +129,19 @@ namespace TaskManager.Controllers
                 count++;
             }
         }
+        [Authorize]
+        [HttpGet]
+        public void DeletePersonalBoard(int id)
+        {
+            db.PerDashBoards.Remove(db.PerDashBoards.Find(id));
+            db.SaveChanges();
+        }
+        [Authorize]
+        [HttpGet]
+        public void DeleteMultiBoard(int id)
+        {
+            db.MultiDashBoards.Remove(db.MultiDashBoards.Find(id));
+            db.SaveChanges();
+        }
     }
 }

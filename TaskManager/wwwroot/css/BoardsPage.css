@@ -171,3 +171,14 @@
     cursor: -moz-grabbing !important; /* Firefox 1.5-26 */
     cursor: grabbing !important; /* W3C standards syntax, should come least */
 }
+.emptyBoard{
+    width: 245px;
+    height: 100px;
+    border: 2px dotted black;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+.board-adding__form{
+    border: 1px solid black;
+}
