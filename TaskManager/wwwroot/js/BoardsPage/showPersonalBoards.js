@@ -1,11 +1,14 @@
-﻿const elem = document.getElementById("personalBoards");
-const value = elem.getAttribute("data-boards");
+﻿$(document).ready(function () {
+    const elem = document.getElementById("personalBoards");
+    const value = elem.getAttribute("data-boards");
+    ShowPersonalBoards(value);
+});
 
-const boards = JSON.parse(value);
-console.log(boards);
+function ShowPersonalBoards(value) {
+    const arrOfBoards = JSON.parse(value);
 
-(function (arrOfBoards) {
     const listOfBoards = document.querySelector('.allPersonalBoards');
+    listOfBoards.innerHTML = '';
 
     const objOfBoards = arrOfBoards.reduce((acc, obj) => {
         acc[obj.PositionNo] = obj;
@@ -62,7 +65,9 @@ console.log(boards);
             boardPanel.classList.add('Board-panel', 'd-flex', 'flex-nowrap', 'justify-content-between', 'align-items-end');
 
             const boardEditButton = document.createElement('div');
-            boardEditButton.classList.add('boardButton', 'button-state', 'button-state__edit', 'hover-slide-up', 'flex-grow-1');
+            boardEditButton.classList.add('personalBoard-edit', 'boardButton', 'button-state', 'button-state__edit', 'hover-slide-up', 'flex-grow-1');
+            boardEditButton.setAttribute("data-toggle", "modal");
+            boardEditButton.setAttribute('data-target', '#edit-personalBoard');
 
             const boardEditButtonText = document.createElement('div');
             boardEditButtonText.classList.add('boardButton-content');
@@ -93,8 +98,6 @@ console.log(boards);
 
             return boardContainer;
         }
-
         listOfBoards.appendChild(fragment);
     }
-
-})(boards);
+};

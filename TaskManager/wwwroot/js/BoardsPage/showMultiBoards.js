@@ -1,10 +1,13 @@
-﻿const elem = document.getElementById("multiBoards");
-const value = elem.getAttribute("data-boards");
+﻿$(document).ready(function () {
+    const elem = document.getElementById("multiBoards");
+    const value = elem.getAttribute("data-boards");
+    ShowMultiBoards(value);
+});
+function ShowMultiBoards(value) {
+    const arrOfBoards = JSON.parse(value);
 
-const boards = JSON.parse(value);
-
-(function (arrOfBoards) {
     const listOfBoards = document.querySelector('.allMultiBoards');
+    listOfBoards.innerHTML = '';
 
     const objOfBoards = arrOfBoards.reduce((acc, obj) => {
         acc[obj.PositionNo] = obj;
@@ -61,7 +64,9 @@ const boards = JSON.parse(value);
             boardPanel.classList.add('Board-panel', 'd-flex', 'flex-nowrap', 'justify-content-between', 'align-items-end');
 
             const boardEditButton = document.createElement('div');
-            boardEditButton.classList.add('boardButton', 'button-state', 'button-state__edit', 'hover-slide-up', 'flex-grow-1');
+            boardEditButton.classList.add('multiBoard-edit', 'boardButton', 'button-state', 'button-state__edit', 'hover-slide-up', 'flex-grow-1');
+            boardEditButton.setAttribute("data-toggle", "modal");
+            boardEditButton.setAttribute('data-target', '#edit-multiBoard');
 
             const boardEditButtonText = document.createElement('div');
             boardEditButtonText.classList.add('boardButton-content');
@@ -92,8 +97,6 @@ const boards = JSON.parse(value);
 
             return boardContainer;
         }
-
         listOfBoards.appendChild(fragment);
     }
-
-})(boards);
+};
