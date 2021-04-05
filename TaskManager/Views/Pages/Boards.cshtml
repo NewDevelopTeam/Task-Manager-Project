@@ -96,6 +96,44 @@
     </div>
 </div>
 
+<div id="edit-personalBoard" class="modal fade" role="dialog" style="min-width: 290px">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header adding-personalBoard__header align-items-center">
+                <div>Редактирование персональной доски</div>
+                <button type="button" class="close btn-close btn-lg" aria-label="Close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h2 class="board-description">Описание доски</h2>
+                <textarea class="board-adding__form w-100 p-1" placeholder="Ввести текст для доски" required rows="4"></textarea>
+                <span class="form-error__message"></span>
+                <div>
+                    <button type="submit" class="edit-personalBoard__button btn btn-dark w-100 mt-2">Подтвердить изменения</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="edit-multiBoard" class="modal fade" role="dialog" style="min-width: 290px">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header adding-multiBoard__header align-items-center">
+                <div>Редактирование многопользовательской доски</div>
+                <button type="button" class="close btn-close btn-lg" aria-label="Close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h2 class="board-description">Описание доски</h2>
+                <textarea class="board-adding__form w-100 p-1" placeholder="Ввести текст для доски" required rows="4"></textarea>
+                <span class="form-error__message"></span>
+                <div>
+                    <button type="submit" class="edit-multiBoard__button btn btn-dark w-100 mt-2">Подтвердить изменения</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="delete-personalBoard" class="modal fade" role="dialog" style="min-width: 290px">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -161,13 +199,16 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
 
-    <script type="module" src="~/js/BoardsPage/showPersonalBoards.js" asp-append-version="true"></script>
-    <script type="module" src="~/js/BoardsPage/showMultiBoards.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/BoardsPage/showPersonalBoards.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/BoardsPage/showMultiBoards.js" asp-append-version="true"></script>
     <script type="module" src="~/js/BoardsPage/choosePersonalBoard.js" asp-append-version="true"></script>
     <script type="module" src="~/js/BoardsPage/sortPersonalBoards.js" asp-append-version="true"></script>
     <script type="module" src="~/js/BoardsPage/sortMultiBoards.js" asp-append-version="true"></script>
     <script type="module" src="~/js/BoardsPage/deletePersonalBoard.js" asp-append-version="true"></script>
     <script type="module" src="~/js/BoardsPage/deleteMultiBoard.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/BoardsPage/editPersonalBoard.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/BoardsPage/editMultiBoard.js" asp-append-version="true"></script>
+    
 }
 
 @section Styles{
