@@ -1,44 +1,43 @@
 ﻿$(document).ready(function () {
 	PersonalBoardHandler();
 });
-
 function PersonalBoardHandler(){
 	$('.personalBoard-edit').click(function () {
-		console.log("ksdjf")
 		let idValue = event.target.closest('.Board-container').dataset.id;
-		console.log(idValue);
-		let boardName = $(event.target).closest('.Board-container').find('.Board-description').text();
-		$('.board-adding__form').val(boardName);
+		let name = $(event.target).closest('.Board-container').find('.Board-description').text();
+		console.log(`idValue: ${idValue}`);
+		console.log(`boardName: ${name}`);
+		$('.personalBoard-adding__form').val(name);
 		$('.edit-personalBoard__button').attr('id', idValue);
 
 		var $submit = $('.edit-personalBoard__button');
 		$submit.prop('disabled', true);
-		$('.board-adding__form').on('input change', function () {
+		$('.personalBoard-adding__form').on('input change', function () {
 			$submit.prop('disabled', !$(this).val().length);
 		});
 	});
-
-	$('.board-adding__form').click(function () {
-		const id = $('.edit-personalBoard__button').attr('id');
-		const name = $('.board-adding__form').val();
-		EditPersonalBoard(id, name);
-
-		$('#edit-personalBoard__button').modal('hide');
+	$('.edit-personalBoard__button').click(function () {
+		var boardInfo = {
+			BoardId: $('.edit-personalBoard__button').attr('id'),
+			BoardName: $('.personalBoard-adding__form').val(),
+		};
+		console.log(`BoardId: ${boardInfo.BoardId}, BoardName: ${boardInfo.BoardName}`);
+		EditPersonalBoard(boardInfo);
+		$('#edit-personalBoard').modal('hide');
 	})
 
 	$('.btn-close').click(function () {
 		$('.board-adding__form').val('');
 	})
 }
-
-function EditPersonalBoard(id, name) {
+function EditPersonalBoard(boardInfo) {
 	$.ajax({
-		method: 'GET',
+		method: 'POST',
 		url: 'https://localhost:44363/boards/editpersonalboard',
 		contentType: 'application/json',
-		data: $.param({ boardId: id, boardName: name }, true),
+		data: JSON.stringify(boardInfo),
 		success: function (data) {
-			ShowPersonalBoards(data.jsonBoards);
+			window.location.href = "/pages/boards";
 		},
 		error: function () {
 			console.log("Error");

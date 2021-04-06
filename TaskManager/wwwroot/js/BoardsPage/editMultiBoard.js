@@ -1,41 +1,43 @@
 ﻿$(document).ready(function () {
 	MultiBoardHandler();
 });
-
 function MultiBoardHandler() {
 	$('.multiBoard-edit').click(function () {
 		let idValue = event.target.closest('.Board-container').dataset.id;
-		console.log(idValue);
-		let boardName = $(event.target).closest('.Board-container').find('.Board-description').text();
-		$('.board-adding__form').val(boardName);
+		let name = $(event.target).closest('.Board-container').find('.Board-description').text();
+		console.log(`idValue: ${idValue}`);
+		console.log(`boardName: ${name}`);
+		$('.multiBoard-adding__form').val(name);
 		$('.edit-multiBoard__button').attr('id', idValue);
 
 		var $submit = $('.edit-multiBoard__button');
 		$submit.prop('disabled', true);
-		$('.board-adding__form').on('input change', function () {
+		$('.multiBoard-adding__form').on('input change', function () {
 			$submit.prop('disabled', !$(this).val().length);
 		});
 	});
-	$('.board-adding__form').click(function () {
-		const id = $('.edit-multiBoard__button').attr('id');
-		const name = $('.board-adding__form').val();
-		EditMultiBoard(id, name);
-		$('#edit-multiBoard__button').modal('hide');
+	$('.edit-multiBoard__button').click(function () {
+		var boardInfo = {
+			BoardId: $('.edit-multiBoard__button').attr('id'),
+			BoardName: $('.multiBoard-adding__form').val(),
+		};
+		console.log(`BoardId: ${boardInfo.BoardId}, BoardName: ${boardInfo.BoardName}`);
+		EditMultiBoard(boardInfo);
+		$('#edit-multiBoard').modal('hide');
 	})
 
 	$('.btn-close').click(function () {
 		$('.board-adding__form').val('');
 	})
 }
-
-function EditMultiBoard(id, name) {
+function EditMultiBoard(boardInfo) {
 	$.ajax({
-		method: 'GET',
+		method: 'POST',
 		url: 'https://localhost:44363/boards/editmultiboard',
 		contentType: 'application/json',
-		data: $.param({ boardId: id, boardName: name }, true),
+		data: JSON.stringify(boardInfo),
 		success: function (data) {
-			ShowMultiBoards(data.jsonBoards);
+			window.location.href = "/pages/boards";
 		},
 		error: function () {
 			console.log("Error");
