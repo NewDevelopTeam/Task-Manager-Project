@@ -62,7 +62,7 @@
             <form method="get" class="needs-validation" asp-action="AddPersonalBoard" asp-controller="Boards" novalidate>
                 <div class="modal-body">
                     <h2 class="card-description">Название доски</h2>
-                    <textarea class="board-adding__form w-100 p-1" asp-for="PersonalBoardName" placeholder="Введите название для доски" rows="4"></textarea>
+                    <textarea class="board-adding__form board-form w-100 p-1" asp-for="PersonalBoardName" placeholder="Введите название для доски" rows="4"></textarea>
                     <span asp-validation-for="PersonalBoardName"></span>
                     <span class="form-error__message"></span>
                     <div>
@@ -84,7 +84,7 @@
             <form method="get" class="needs-validation" asp-action="AddMultiBoard" asp-controller="Boards" novalidate>
                 <div class="modal-body">
                     <h2 class="card-description">Название доски</h2>
-                    <textarea class="board-adding__form w-100 p-1" asp-for="MultiBoardName" placeholder="Введите название для доски" rows="4"></textarea>
+                    <textarea class="board-adding__form board-form w-100 p-1" asp-for="MultiBoardName" placeholder="Введите название для доски" rows="4"></textarea>
                     <span asp-validation-for="MultiBoardName"></span>
                     <span class="form-error__message"></span>
                     <div>
@@ -105,7 +105,7 @@
             </div>
             <div class="modal-body">
                 <h2 class="board-description">Описание доски</h2>
-                <textarea class="board-adding__form w-100 p-1" placeholder="Ввести текст для доски" required rows="4"></textarea>
+                <textarea class="personalBoard-adding__form board-form w-100 p-1" placeholder="Ввести текст для доски" required rows="4"></textarea>
                 <span class="form-error__message"></span>
                 <div>
                     <button type="submit" class="edit-personalBoard__button btn btn-dark w-100 mt-2">Подтвердить изменения</button>
@@ -124,7 +124,7 @@
             </div>
             <div class="modal-body">
                 <h2 class="board-description">Описание доски</h2>
-                <textarea class="board-adding__form w-100 p-1" placeholder="Ввести текст для доски" required rows="4"></textarea>
+                <textarea class="multiBoard-adding__form board-form w-100 p-1" placeholder="Ввести текст для доски" required rows="4"></textarea>
                 <span class="form-error__message"></span>
                 <div>
                     <button type="submit" class="edit-multiBoard__button btn btn-dark w-100 mt-2">Подтвердить изменения</button>
@@ -207,8 +207,7 @@
     <script type="module" src="~/js/BoardsPage/deletePersonalBoard.js" asp-append-version="true"></script>
     <script type="module" src="~/js/BoardsPage/deleteMultiBoard.js" asp-append-version="true"></script>
     <script type="text/javascript" src="~/js/BoardsPage/editPersonalBoard.js" asp-append-version="true"></script>
-    <script type="text/javascript" src="~/js/BoardsPage/editMultiBoard.js" asp-append-version="true"></script>
-    
+    <script type="text/javascript" src="~/js/BoardsPage/editMultiBoard.js" asp-append-version="true"></script>  
 }
 
 @section Styles{

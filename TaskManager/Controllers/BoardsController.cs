@@ -143,5 +143,47 @@ namespace TaskManager.Controllers
             db.MultiDashBoards.Remove(db.MultiDashBoards.Find(id));
             db.SaveChanges();
         }
+        [Authorize]
+        [HttpPost]
+        public JsonResult EditPersonalBoard([FromBody]EditPersonalBoardViewModel boardInfo)
+        {
+            int id = Int32.Parse(boardInfo.BoardId);
+
+            PersonalDashboard board = db.PerDashBoards.Find(id);
+            board.DashboardName = boardInfo.BoardName;
+
+            db.PerDashBoards.Update(board);
+            db.SaveChanges();
+
+            string userEmail = User.Identity.Name;
+            User user = db.Users.FirstOrDefault(u => u.Email == userEmail);
+            int userId = user.UserId;
+
+            List<PersonalDashboard> listOfBoards = db.PerDashBoards.Where(p => p.UserId == userId).ToList();
+            string boards = JsonConvert.SerializeObject(listOfBoards);
+
+            return Json(new { jsonBoards = boards });
+        }
+        [Authorize]
+        [HttpPost]
+        public JsonResult EditMultiBoard([FromBody] EditPersonalBoardViewModel boardInfo)
+        {
+            int id = Int32.Parse(boardInfo.BoardId);
+
+            MultiDashboard board = db.MultiDashBoards.Find(id);
+            board.DashboardName = boardInfo.BoardName;
+
+            db.MultiDashBoards.Update(board);
+            db.SaveChanges();
+
+            string userEmail = User.Identity.Name;
+            User user = db.Users.FirstOrDefault(u => u.Email == userEmail);
+            int userId = user.UserId;
+
+            List<MultiDashboard> listOfBoards = db.MultiDashBoards.Where(p => p.UserId == userId).ToList();
+            string boards = JsonConvert.SerializeObject(listOfBoards);
+
+            return Json(new { jsonBoards = boards });
+        }
     }
 }
