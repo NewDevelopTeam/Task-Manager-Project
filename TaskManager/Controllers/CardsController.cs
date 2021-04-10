@@ -21,12 +21,17 @@ namespace TaskManager.Controllers
         {
             db = context;
         }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult AddCard()
+        public void UpdatePositions(List<int> listofId)
         {
-            return RedirectToAction("Cards", "Pages");
+            int count = 0;
+            foreach (var idCard in listofId)
+            {
+                PersonalCard item = db.PerCards.Where(x => x.Id == idCard).FirstOrDefault();
+                item.RowNo = count;
+                db.PerCards.Update(item);
+                db.SaveChanges();
+                count++;
+            }
         }
         [Authorize]
         [HttpPost]
@@ -36,7 +41,6 @@ namespace TaskManager.Controllers
             {
                 return View("~/Views/Pages/Cards.cshtml");
             }
-
             string userEmail = User.Identity.Name;
             User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
             int numbOfCards = await db.PerCards.CountAsync(n => n.User == user);
@@ -48,64 +52,42 @@ namespace TaskManager.Controllers
                 RowNo = numbOfCards,
             });
 
-            await db.SaveChangesAsync();
-            
+            await db.SaveChangesAsync();          
             return RedirectToAction("Cards", "Pages");
         }
-
         [Authorize]
-        [HttpPost]
-        public void DeleteCard([FromBody] string cardId)
+        [HttpGet]
+        public void DeleteCard(int id)
         {   
-            int id = JsonConvert.DeserializeObject<int>(cardId);
-
             db.PerCards.Remove(db.PerCards.Find(id));
             db.SaveChanges();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public JsonResult EditCards([FromBody]EditCardViewModel cardInfo)
-        {
-            int id = Int32.Parse(cardInfo.CardId);
-
-            PersonalCard card = db.PerCards.Find(id);
-
-            card.CardDescription = cardInfo.CardText;
-
-            db.PerCards.Update(card);
-            db.SaveChanges();
-
 
             string userEmail = User.Identity.Name;
             User user = db.Users.FirstOrDefault(u => u.Email == userEmail);
             int userId = user.UserId;
 
             List<PersonalCard> listOfCards = db.PerCards.Where(p => p.UserId == userId).ToList();
+            List<int> numOfCards = listOfCards.Select(card => card.Id).ToList();
+            UpdatePositions(numOfCards);
+        }
+        
+        [Authorize]
+        [HttpGet]
+        public void EditCard(int id, string description)
+        {
+            PersonalCard card = db.PerCards.Find(id);
+            card.CardDescription = description;
 
-            string cards = JsonConvert.SerializeObject(listOfCards);
-
-            return Json(new {jsonCards = cards });
+            db.PerCards.Update(card);
+            db.SaveChanges();
         }
 
         [Authorize]
         [HttpGet]
-        public void Updatecards(List<string> data)
+        public void UpdateCards(string ids)
         {
-            List<int> numOfCards = data.Select(s => int.Parse(s)).ToList();
-           
-            int count = 0;
-
-            foreach (var idCard in numOfCards)
-            {
-                PersonalCard item = db.PerCards.Where(x => x.Id == idCard).FirstOrDefault();
-                item.RowNo = count;
-                db.PerCards.Update(item);
-                db.SaveChanges();
-
-                count++;
-            }
-
+            List<int> list = JsonConvert.DeserializeObject<List<int>>(ids);
+            UpdatePositions(list);
         }
     }
 }
