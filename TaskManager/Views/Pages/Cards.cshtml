@@ -39,7 +39,7 @@
 
 <div class="container h-100 pt-2">
     <div class="CardsPage">
-        <div class="Headline Cards pl-4 my-2">Персональные карточки</div>
+      <div class="Headline Cards pl-4 my-2">Персональные карточки</div>
     </div>
 
     <button class="card-add btn btn-dark my-2" data-toggle="modal" data-target="#add-card">
@@ -138,17 +138,10 @@
     </div>
 </div>
 
-
 @section Scripts{
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
-
-    
-
-    <script type="module" src="~/js/showCards.js" asp-append-version="true"></script>
-    <script type="module" src="~/js/deleteCards.js" asp-append-version="true"></script>
-    <script type="module" src="~/js/editCards.js" asp-append-version="true"></script>
-    <script type="module" src="~/js/sortCards.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/CardsPage/main_CardsPages.js" asp-append-version="true"></script>
 }
 
 @section Styles{
