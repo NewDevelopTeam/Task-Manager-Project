@@ -4,16 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.1/css/all.css"asp-append-version="true"/>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.1/css/all.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Preloader.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="h-100 d-flex flex-column justify-content-between">
         <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow" style="z-index: 200;">
                 <div class="container d-flex flex-nowrap">
                     <div class="logo py-2 pr-3">
                         PlusDash
@@ -22,6 +23,9 @@
                 </div>
             </nav>
         </header>
+        <div class="preloader hidden">
+            <img src="/icons/preloader.gif"/>
+        </div>
         @RenderBody()
         <div class="container bottom-description flex-shrink-0 text-center">
             @RenderSection("Footer", false)
@@ -30,6 +34,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="~/js/preloader.js" asp-append-version="true"></script>
     <script src="~/js/AuthForms.js" asp-append-version="true"></script>
 
     @RenderSection("Styles", required: false)
