@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "bSP/IYPJsIoyQC0m7GFyEHeYHH54qs7GQeM8LGTejuvKW7Y/Y/xKTyPQTUj+clcj+iDH8JBcyMWZP7kynt2J6A==",
+  "success": true,
+  "projectFilePath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\External API\\External API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
+  ],
+  "logs": []
+}
