@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 
 namespace TaskManager.Controllers
 {
+    [Authorize]
     public class CardsController: Controller
     {
         private AccountContext db;
@@ -33,7 +34,6 @@ namespace TaskManager.Controllers
                 count++;
             }
         }
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddCard(CardsViewModel card)
         {
@@ -55,7 +55,6 @@ namespace TaskManager.Controllers
             await db.SaveChangesAsync();          
             return RedirectToAction("Cards", "Pages");
         }
-        [Authorize]
         [HttpGet]
         public void DeleteCard(int id)
         {   
@@ -70,8 +69,6 @@ namespace TaskManager.Controllers
             List<int> numOfCards = listOfCards.Select(card => card.Id).ToList();
             UpdatePositions(numOfCards);
         }
-        
-        [Authorize]
         [HttpGet]
         public void EditCard(int id, string description)
         {
@@ -81,8 +78,6 @@ namespace TaskManager.Controllers
             db.PerCards.Update(card);
             db.SaveChanges();
         }
-
-        [Authorize]
         [HttpGet]
         public void UpdateCards(string ids)
         {

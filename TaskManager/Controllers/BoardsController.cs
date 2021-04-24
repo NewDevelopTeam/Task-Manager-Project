@@ -12,6 +12,7 @@ using TaskManager.ViewModels.BoardsPageViewModels;
 
 namespace TaskManager.Controllers
 {
+    [Authorize]
     public class BoardsController: Controller
     {
         private AccountContext db;
@@ -19,8 +20,6 @@ namespace TaskManager.Controllers
         {
             db = context;
         }
-
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> ShowBoards()
         {
@@ -41,8 +40,6 @@ namespace TaskManager.Controllers
 
             return View("~/Views/Pages/Boards.cshtml", viewmodel);
         }
-
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> AddPersonalBoard(BoardsPageViewModel nameOfBoard)
         {
@@ -62,8 +59,6 @@ namespace TaskManager.Controllers
 
             return RedirectToAction(nameof(ShowBoards));
         }
-
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> AddMultiBoard(BoardsPageViewModel nameOfBoard)
         {
@@ -83,23 +78,17 @@ namespace TaskManager.Controllers
 
             return RedirectToAction(nameof(ShowBoards));
         }
-
-
-        [Authorize]
         [HttpGet]
         public int test(int boardId)
         {
             return boardId;
         }
-
-        [Authorize]
         [HttpGet]
         public IActionResult PersonalBoard(int boardId)
         {
             PersonalBoardViewModel obj = new PersonalBoardViewModel {};
             return View("~/Views/Pages/PersDashboard.cshtml", obj);
         }
-        [Authorize]
         [HttpGet]
         public void UpdatePersonalBoards(List<string> data)
         {
@@ -114,7 +103,6 @@ namespace TaskManager.Controllers
                 count++;
             }
         }
-        [Authorize]
         [HttpGet]
         public void UpdateMultiBoards(List<string> data)
         {
@@ -129,21 +117,18 @@ namespace TaskManager.Controllers
                 count++;
             }
         }
-        [Authorize]
         [HttpGet]
         public void DeletePersonalBoard(int id)
         {
             db.PerDashBoards.Remove(db.PerDashBoards.Find(id));
             db.SaveChanges();
         }
-        [Authorize]
         [HttpGet]
         public void DeleteMultiBoard(int id)
         {
             db.MultiDashBoards.Remove(db.MultiDashBoards.Find(id));
             db.SaveChanges();
         }
-        [Authorize]
         [HttpPost]
         public JsonResult EditPersonalBoard([FromBody]EditPersonalBoardViewModel boardInfo)
         {
@@ -164,7 +149,6 @@ namespace TaskManager.Controllers
 
             return Json(new { jsonBoards = boards });
         }
-        [Authorize]
         [HttpPost]
         public JsonResult EditMultiBoard([FromBody] EditPersonalBoardViewModel boardInfo)
         {
