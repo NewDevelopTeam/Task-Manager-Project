@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaskManager.Models
+namespace PlusDashData.Data
 {
     public class User
     {

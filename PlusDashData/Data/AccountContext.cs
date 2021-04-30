@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TaskManager.Models.BoardsPageModels;
+using PlusDashData.Data.BoardsPageModels;
 
-namespace TaskManager.Models
+namespace PlusDashData.Data
 {
     public class AccountContext : DbContext
     {
