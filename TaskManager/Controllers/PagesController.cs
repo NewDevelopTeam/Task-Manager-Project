@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using TaskManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PlusDashData.Data;
 
 namespace TaskManager.Controllers
 { 

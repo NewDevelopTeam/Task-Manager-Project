@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PlusDashData.Data;
+using PlusDashData.Data.BoardsPageModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TaskManager.Models;
-using TaskManager.Models.BoardsPageModels;
 using TaskManager.ViewModels.BoardsPageViewModels;
 
 namespace TaskManager.Controllers
