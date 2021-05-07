@@ -1,15 +1,93 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj": {}
+    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\External API\\External API.csproj": {}
   },
   "projects": {
-    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj": {
+    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\External API\\External API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj",
-        "projectName": "PlusDashData",
-        "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj",
+        "projectUniqueName": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\External API\\External API.csproj",
+        "projectName": "External API",
+        "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\External API\\External API.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\External API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj": {
+                "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.13, 3.1.13]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj",
+        "projectName": "PlusDashLibrary",
+        "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\obj\\",
         "projectStyle": "PackageReference",
@@ -47,13 +125,13 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[5.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[5.0.5, )"
             }
           },
           "imports": [
@@ -67,92 +145,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj",
-        "projectName": "TaskManager",
-        "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\TaskManager.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\TaskManager\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
-            "projectReferences": {
-              "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj": {
-                "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "BCrypt.Net-Next": {
-              "target": "Package",
-              "version": "[4.0.2, )"
-            },
-            "Microsoft.AspNetCore.Authentication.Cookies": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[5.0.4, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.13, 3.1.13]"
-            }
-          ],
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
