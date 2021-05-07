@@ -33,8 +33,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj": {
-                "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj"
+              "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj": {
+                "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj"
               }
             }
           }
@@ -48,12 +48,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "BCrypt.Net-Next": {
-              "target": "Package",
-              "version": "[4.0.2, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -82,12 +76,12 @@
         }
       }
     },
-    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj": {
+    "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj",
-        "projectName": "PlusDashLibrary",
-        "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashLibrary.csproj",
+        "projectUniqueName": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj",
+        "projectName": "PlusDashData",
+        "projectPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\PlusDashData.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "D:\\C# projects\\PlusDash project\\Task-Manager-Project\\PlusDashData\\obj\\",
         "projectStyle": "PackageReference",
@@ -125,13 +119,13 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.4, )"
             }
           },
           "imports": [
