@@ -9,10 +9,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.FileProviders;
-using PlusDashData.Data;
 using TaskManager.Services.WebClients.Interfaces;
 using TaskManager.Services.WebClients.Implementations;
 using TaskManager.Moduls;
+using TaskManager.Models;
 
 namespace TaskManager
 {
@@ -35,13 +35,16 @@ namespace TaskManager
                     .AddCookie(options => 
                     {
                         options.Cookie.Name = "user_session";
-                        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                        options.LoginPath = new PathString("/Pages/Login");
                         options.SessionStore = new CustomTicketStore(services);
                         options.ExpireTimeSpan = TimeSpan.FromHours(24);
                     });
 
-            services.AddControllersWithViews();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpClient<IAccountsWebClient, AccountsWebClient>();
+            services.AddHttpClient<IDashboardsWebClient, DashboardsWebClient>();
+
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
