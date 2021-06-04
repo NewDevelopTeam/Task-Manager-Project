@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PlusDashData.Data.ViewModels
+namespace PlusDashData.Data.ViewModels.Content
 {
     public class CardsViewModel
     {

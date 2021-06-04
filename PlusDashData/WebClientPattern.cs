@@ -13,11 +13,11 @@ namespace PlusDashData
         {
             _client = client;
         }
-        public async Task<string> GetAsync(string path, string args)
+        public async Task<string> GetAsync(string path, string arg)
         {
             var request = await _client.SendAsync(new HttpRequestMessage()
             {
-                RequestUri = new Uri(path + args),
+                RequestUri = new Uri(_client.BaseAddress, path + arg),
                 Method = HttpMethod.Get
             });
 
@@ -28,7 +28,7 @@ namespace PlusDashData
             var jsonValues = JsonConvert.SerializeObject(arg);
             var request = await _client.SendAsync(new HttpRequestMessage()
             {
-                RequestUri = new Uri(path),
+                RequestUri = new Uri(_client.BaseAddress, path),
                 Method = HttpMethod.Post,
                 Content = new StringContent(jsonValues, Encoding.UTF8, "application/json")
             });
@@ -39,7 +39,7 @@ namespace PlusDashData
         {
             var request = await _client.SendAsync(new HttpRequestMessage()
             {
-                RequestUri = new Uri(path + args),
+                RequestUri = new Uri(_client.BaseAddress, path + args),
                 Method = HttpMethod.Put
             });
 
@@ -49,7 +49,7 @@ namespace PlusDashData
         {
             var requestResult = await _client.SendAsync(new HttpRequestMessage()
             {
-                RequestUri = new Uri(path + args),
+                RequestUri = new Uri(_client.BaseAddress, path + args),
                 Method = HttpMethod.Delete
             });
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using PlusDashData.Data.BoardsPageModels;
+using PlusDashData.Data.Models.Content;
 
-namespace PlusDashData.Data.ViewModels.BoardsPageViewModels
+namespace PlusDashData.Data.ViewModels.Content
 {
     public class BoardsPageViewModel
     {

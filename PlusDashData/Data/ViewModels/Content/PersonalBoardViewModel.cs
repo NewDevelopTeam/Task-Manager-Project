@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PlusDashData.Data.BoardsPageModels;
+using PlusDashData.Data.Models.Content;
 
-namespace PlusDashData.Data.ViewModels.BoardsPageViewModels
+namespace PlusDashData.Data.ViewModels.Content
 {
     public class PersonalBoardViewModel
     {

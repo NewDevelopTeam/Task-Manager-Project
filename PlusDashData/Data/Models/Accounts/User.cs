@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PlusDashData.Data
+﻿namespace PlusDashData.Data.Models.Accounts
 {
     public class User
     {
@@ -8,8 +6,5 @@ namespace PlusDashData.Data
         public string Email { get; set; }
         public bool ValidatedEmail { get; set; }
         public string Password { get; set; }
-        public int  LoginAttempts { get; set; }
-        public DateTime LockOutEnd { get; set; }
-        public bool AccountAccess { get; set; }
     }
 }

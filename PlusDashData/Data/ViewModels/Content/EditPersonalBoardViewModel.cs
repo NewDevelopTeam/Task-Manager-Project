@@ -1,4 +1,4 @@
-﻿namespace PlusDashData.Data.ViewModels.BoardsPageViewModels
+﻿namespace PlusDashData.Data.ViewModels.Content
 {
     public class EditPersonalBoardViewModel
     {

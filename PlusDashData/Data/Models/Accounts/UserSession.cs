@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PlusDashData.Data
+namespace PlusDashData.Data.Models.Accounts
 {
     public class UserSession
     {
@@ -11,6 +9,5 @@ namespace PlusDashData.Data
         public DateTimeOffset? LastActivity { get; set; }
         public DateTimeOffset? Expires { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
     }
 }
