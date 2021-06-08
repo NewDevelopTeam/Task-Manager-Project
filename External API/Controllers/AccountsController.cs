@@ -29,17 +29,17 @@ namespace Accounts_API.Controllers
         /// <returns>Serialized user's data</returns>
         [Route("login")]
         [HttpPost]
-        public async Task<string> GetUserAsync([FromBody] LoginViewModel model)
+        public async Task<ActionResult<string>> GetUserAsync([FromBody] LoginViewModel model)
         {
             User user = await _db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
 
-            if (user == null) return null;
+            if (user == null) return BadRequest(new {error = "The user wasn't found" });
 
             if (BC.Verify(model.Password, user.Password))
             {
-                return user.Email;
+                return Ok(user.Email);
             }
-            return null;
+            return BadRequest(new {error = "The password incorrect" });
         }
 
         /// <summary>
@@ -49,11 +49,11 @@ namespace Accounts_API.Controllers
         /// <returns>Serialized user's data</returns>
         [Route("create")]
         [HttpPost]
-        public async Task<string> CreateUserAsync([FromBody] RegisterViewModel model)
+        public async Task<ActionResult<string>> CreateUserAsync([FromBody] RegisterViewModel model)
         {
             User user = await _db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
 
-            if (user != null) return null;
+            if (user != null) return BadRequest(new { error = "The user already exists" } );
 
             User newUser = new User
             {
@@ -65,21 +65,21 @@ namespace Accounts_API.Controllers
             await _db.Users.AddAsync(newUser);
             await _db.SaveChangesAsync();
 
-            return newUser.Email;
+            return Ok(newUser.Email);
         }
 
         /// <summary>
         /// This Get method retrieves user
         /// </summary>
-        /// <param name="email"></param>
+        /// <param name="userEmail"></param>
         /// <returns>Serialized user's data</returns>
-        [Route("users/{email}")]
+        [Route("users/{userEmail}")]
         [HttpGet]
-        public async Task<string> GetUserAsync([FromRoute]string email)
+        public async Task<ActionResult<string>> GetUserAsync([FromRoute] string userEmail)
         {
-            User user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
+            User user = await _db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            if (user == null) return BadRequest(new {error = "This user doesn't exist" });
             return JsonConvert.SerializeObject(user);
         }
-
     }
 }
