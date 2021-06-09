@@ -1,4 +1,4 @@
-﻿@model TaskManager.ViewModels.BoardsPageViewModels.BoardsPageViewModel
+﻿@model PlusDashData.Data.ViewModels.Content.BoardsPageViewModel
 
 @section navTabs {
     <div class="navbar-collapse d-flex justify-content-between flex-nowrap">
@@ -59,7 +59,7 @@
                 <div>Добавление персональной доски</div>
                 <button type="button" class="close btn-close btn-lg" aria-label="Close" data-dismiss="modal">&times;</button>
             </div>
-            <form method="get" class="needs-validation" asp-action="AddPersonalBoard" asp-controller="Boards" novalidate>
+            <form method="post" class="needs-validation" asp-action="AddPersonalBoard" asp-controller="Boards" novalidate>
                 <div class="modal-body">
                     <h2 class="card-description">Название доски</h2>
                     <textarea class="board-adding__form board-form w-100 p-1" asp-for="PersonalBoardName" placeholder="Введите название для доски" rows="4"></textarea>
@@ -81,14 +81,14 @@
                 <div>Добавление многопользовательской доски</div>
                 <button type="button" class="close btn-close btn-lg" aria-label="Close" data-dismiss="modal">&times;</button>
             </div>
-            <form method="get" class="needs-validation" asp-action="AddMultiBoard" asp-controller="Boards" novalidate>
+            <form method="post" class="needs-validation" asp-action="AddMultiBoard" asp-controller="Boards" novalidate>
                 <div class="modal-body">
                     <h2 class="card-description">Название доски</h2>
                     <textarea class="board-adding__form board-form w-100 p-1" asp-for="MultiBoardName" placeholder="Введите название для доски" rows="4"></textarea>
                     <span asp-validation-for="MultiBoardName"></span>
                     <span class="form-error__message"></span>
                     <div>
-                        <input type="submit" class="add-card__button btn btn-dark w-100 mt-2" value="Добавить доску" />
+                        <input type="submit" class="add-multiBoard__button btn btn-dark w-100 mt-2" value="Добавить доску" />
                     </div>
                 </div>
             </form>
