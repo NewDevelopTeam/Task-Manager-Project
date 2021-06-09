@@ -66,16 +66,7 @@ namespace Dashboards_API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdatePositionsPerDashboardAsync([FromQuery(Name ="ids")] int[] ids)
         {
-            int count = 0;
-
-            foreach (var idBoard in ids)
-            {
-                PersonalDashboard board = _db.PerDashBoards.Where(x => x.Id == idBoard).FirstOrDefault();
-                board.PositionNo = count;
-                _db.PerDashBoards.Update(board);
-                await _db.SaveChangesAsync();
-                count++;
-            }
+            await UpdatePositions(ids);
 
             return Ok(new {message = "The positions were sorted successfully"});
         }
@@ -83,18 +74,24 @@ namespace Dashboards_API.Controllers
         /// <summary>
         /// This method deletes a personal dashboard
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="boardId"></param>
+        /// <param name="userId"></param>
         /// <returns>Operation status message</returns>
         [Route("delete")]
         [HttpDelete]
-        public async Task<IActionResult> DeletePerDashboardAsync([FromQuery] int id)
+        public async Task<IActionResult> DeletePerDashboardAsync([FromQuery] int boardId, [FromQuery] int userId)
         {
-            var board = _db.PerDashBoards.Find(id);
+            var board = _db.PerDashBoards.Find(boardId);
 
             if (board == null) return BadRequest(new { error = "The dashboard wasn't found" });
 
             _db.PerDashBoards.Remove(board);
             await _db.SaveChangesAsync();
+
+            List<PersonalDashboard> listOfBoards = _db.PerDashBoards.Where(b => b.UserId == userId).ToList();
+            int[] numOfBoards = listOfBoards.Select(board => board.Id).ToArray();
+
+            await UpdatePositions(numOfBoards);
 
             return Ok(new {message = "The dashboard was deleted successfully"});
         }
@@ -119,6 +116,22 @@ namespace Dashboards_API.Controllers
             await _db.SaveChangesAsync();
 
             return Ok(new {message = "The dashboard name was changed successfully"});
+        }
+
+        private async Task UpdatePositions(int[] ids)
+        {
+            int count = 0;
+
+            foreach (var idCard in ids)
+            {
+                PersonalDashboard item = _db.PerDashBoards.Where(x => x.Id == idCard).FirstOrDefault();
+                item.PositionNo = count;
+                _db.PerDashBoards.Update(item);
+                await _db.SaveChangesAsync();
+                count++;
+            }
+
+            await _db.SaveChangesAsync();
         }
     }
 }

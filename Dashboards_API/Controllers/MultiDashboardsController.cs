@@ -66,16 +66,7 @@ namespace Dashboards_API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdatePositionsMultiDashboardAsync([FromQuery(Name = "ids")] int[] ids)
         {
-            int count = 0;
-
-            foreach (var idBoard in ids)
-            {
-                MultiDashboard board = _db.MultiDashBoards.Where(x => x.Id == idBoard).FirstOrDefault();
-                board.PositionNo = count;
-                _db.MultiDashBoards.Update(board);
-                await _db.SaveChangesAsync();
-                count++;
-            }
+            await UpdatePositions(ids);
 
             return Ok(new { message = "The positions were sorted successfully" });
         }
@@ -83,18 +74,24 @@ namespace Dashboards_API.Controllers
         /// <summary>
         /// This method deletes a multiple dashboard
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="boardId"></param>
+        /// <param name="userId"></param>
         /// <returns>Operation status message</returns>
         [Route("delete")]
         [HttpDelete]
-        public async Task<IActionResult> DeleteMultiDashboardAsync([FromQuery] int id)
+        public async Task<IActionResult> DeleteMultiDashboardAsync([FromQuery] int boardId, [FromQuery] int userId)           ///добавлен int userId
         {
-            var board = _db.MultiDashBoards.Find(id);
+            var board = _db.MultiDashBoards.Find(boardId);
 
             if (board == null) return BadRequest(new { error = "The dashboard wasn't found" });
 
             _db.MultiDashBoards.Remove(board);
             await _db.SaveChangesAsync();
+
+            List<MultiDashboard> listOfBoards = _db.MultiDashBoards.Where(p => p.UserId == userId).ToList();
+            int[] numOfBoards = listOfBoards.Select(board => board.Id).ToArray();
+
+            await UpdatePositions(numOfBoards);
 
             return Ok(new { message = "The dashboard was deleted successfully" });
         }
@@ -119,6 +116,22 @@ namespace Dashboards_API.Controllers
             await _db.SaveChangesAsync();
 
             return Ok(new { message = "The dashboard name was changed successfully" });
+        }
+
+        private async Task UpdatePositions(int[] ids)
+        {
+            int count = 0;
+
+            foreach (var idCard in ids)
+            {
+                MultiDashboard item = _db.MultiDashBoards.Where(x => x.Id == idCard).FirstOrDefault();
+                item.PositionNo = count;
+                _db.MultiDashBoards.Update(item);
+                await _db.SaveChangesAsync();
+                count++;
+            }
+
+            await _db.SaveChangesAsync();
         }
     }
 }
