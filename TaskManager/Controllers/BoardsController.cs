@@ -88,13 +88,17 @@ namespace TaskManager.Controllers
         [HttpDelete]
         public async Task DeletePersonalBoard([FromQuery] int id)
         {
-            await _wcDashboards.DeleteAsync("api/perdashboards/delete", "?id=" + id);
+            User user = await GetCurrentUser();
+
+            await _wcDashboards.DeleteAsync("api/perdashboards/delete", "?boardId=" + id + "&userId=" + user.UserId);
         }
 
         [HttpDelete]
         public async Task DeleteMultiBoard([FromQuery] int id)
         {
-            await _wcDashboards.DeleteAsync("api/multidashboards/delete", "?id=" + id);
+            User user = await GetCurrentUser();
+
+            await _wcDashboards.DeleteAsync("api/multidashboards/delete", "?boardId=" + id + "&userId=" + user.UserId);
         }
 
         [HttpPut]

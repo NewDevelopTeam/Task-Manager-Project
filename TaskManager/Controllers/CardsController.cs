@@ -1,85 +1,71 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TaskManager.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using PlusDashData.Data;
+using TaskManager.Services.WebClients.Interfaces;
+using PlusDashData.Data.Models.Accounts;
+using PlusDashData.Data.ViewModels.Content;
 
 namespace TaskManager.Controllers
 {
     [Authorize]
     public class CardsController: Controller
     {
-        private AccountContext db;
-        public CardsController(AccountContext context)
+        private readonly IAccountsWebClient _wcAccounts;
+        private readonly IDashboardsWebClient _wcDashboards;
+        public CardsController(IAccountsWebClient wcAccounts, IDashboardsWebClient wcDashboards)
         {
-            db = context;
+            _wcAccounts = wcAccounts;
+            _wcDashboards = wcDashboards;
         }
-        public void UpdatePositions(List<int> listofId)
+        
+        [HttpGet]
+        public async Task<IActionResult> ShowCards()
         {
-            int count = 0;
-            foreach (var idCard in listofId)
-            {
-                PersonalCard item = db.PerCards.Where(x => x.Id == idCard).FirstOrDefault();
-                item.RowNo = count;
-                db.PerCards.Update(item);
-                db.SaveChanges();
-                count++;
-            }
+            User user = await GetCurrentUser();       
+            ViewBag.strCards = await _wcDashboards.GetAsync("api/cards/all/", $"{user.UserId}");
+
+            return View("~/Views/Pages/Cards.cshtml");
         }
+        
         [HttpPost]
         public async Task<IActionResult> AddCard(CardsViewModel card)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("~/Views/Pages/Cards.cshtml");
-            }
-            string userEmail = User.Identity.Name;
-            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
-            int numbOfCards = await db.PerCards.CountAsync(n => n.User == user);
+            User user = await GetCurrentUser();
+            card.UserId = user.UserId;
 
-            db.PerCards.Add(new PersonalCard
-            {
-                CardDescription = card.CardDescription,
-                UserId = user.UserId,
-                RowNo = numbOfCards,
-            });
-
-            await db.SaveChangesAsync();          
+            await _wcDashboards.PostAsync<CardsViewModel>("api/cards/add/", card);
+               
             return RedirectToAction("Cards", "Pages");
         }
-        [HttpGet]
-        public void DeleteCard(int id)
-        {   
-            db.PerCards.Remove(db.PerCards.Find(id));
-            db.SaveChanges();
+        
+        [HttpDelete]
+        public async Task DeleteCard(int id)
+        {
+            User user = await GetCurrentUser();
 
+            await _wcDashboards.DeleteAsync("api/cards/delete/", "?cardId=" + id + "&userId=" + user.UserId);       
+                       
+        }
+
+        [HttpPut]
+        public async Task EditCard([FromQuery] int id, [FromQuery] string description)
+        {
+            await _wcDashboards.PutAsync("api/cards/edit", "?cardId=" + id + "&description=" + description);
+        }
+
+        [HttpPut]
+        public async Task UpdatePositionsCards([FromQuery] string ids)
+        {
+            await _wcDashboards.PutAsync("api/cards/sort", "?ids=" + ids);
+        }
+        
+        private async Task<User> GetCurrentUser()
+        {
             string userEmail = User.Identity.Name;
-            User user = db.Users.FirstOrDefault(u => u.Email == userEmail);
-            int userId = user.UserId;
-
-            List<PersonalCard> listOfCards = db.PerCards.Where(p => p.UserId == userId).ToList();
-            List<int> numOfCards = listOfCards.Select(card => card.Id).ToList();
-            UpdatePositions(numOfCards);
-        }
-        [HttpGet]
-        public void EditCard(int id, string description)
-        {
-            PersonalCard card = db.PerCards.Find(id);
-            card.CardDescription = description;
-
-            db.PerCards.Update(card);
-            db.SaveChanges();
-        }
-        [HttpGet]
-        public void UpdateCards(string ids)
-        {
-            List<int> list = JsonConvert.DeserializeObject<List<int>>(ids);
-            UpdatePositions(list);
+            string userJson = await _wcAccounts.GetAsync("api/accounts/users/", userEmail);
+            User user = JsonConvert.DeserializeObject<User>(userJson);
+            return user;
         }
     }
 }
