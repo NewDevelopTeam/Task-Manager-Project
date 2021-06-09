@@ -41,10 +41,11 @@ namespace TaskManager
                     });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddControllersWithViews();
+
             services.AddHttpClient<IAccountsWebClient, AccountsWebClient>();
             services.AddHttpClient<IDashboardsWebClient, DashboardsWebClient>();
-
-            services.AddControllersWithViews();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
