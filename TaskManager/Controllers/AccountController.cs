@@ -53,7 +53,7 @@ namespace TaskManager.Controllers
 
             string response = await _webClient.PostAsync<RegisterViewModel>("api/accounts/create/", model);
             
-            if (response == null || response == "") //возвращается "" проверить запрос к web api
+            if (response == null || response == "") 
             {
                 SetErrorMessage("Пользователь с таким e-mail уже зарегистрирован на сайте. Выберите другой логин (e-mail), или восстановите пароль");
                 return View();

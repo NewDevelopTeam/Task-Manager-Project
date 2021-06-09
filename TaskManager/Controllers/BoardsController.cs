@@ -1,173 +1,132 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using PlusDashData.Data;
-using PlusDashData.Data.BoardsPageModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using TaskManager.ViewModels.BoardsPageViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using PlusDashData.Data.Models.Accounts;
+using PlusDashData.Data.Models.Content;
+using PlusDashData.Data.ViewModels.Content;
+using TaskManager.Services.WebClients.Interfaces;
 
 namespace TaskManager.Controllers
 {
     [Authorize]
     public class BoardsController: Controller
     {
-        private AccountContext db;
-        public BoardsController(AccountContext context)
+        private readonly IAccountsWebClient _wcAccounts;
+        private readonly IDashboardsWebClient _wcDashboards;
+        public BoardsController(IAccountsWebClient wcAccounts, IDashboardsWebClient wcDashboards)
         {
-            db = context;
+            _wcAccounts = wcAccounts;
+            _wcDashboards = wcDashboards;           
         }
+
         [HttpGet]
         public async Task<IActionResult> ShowBoards()
         {
-            string userEmail = User.Identity.Name;
-            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
-            int userId = user.UserId;
 
-            List<PersonalDashboard> persBoards = db.PerDashBoards.Where(p => p.UserId == userId).ToList();
-            List<MultiDashboard> multiBoards = db.MultiDashBoards.Where(p => p.UserId == userId).ToList();
+            User user = await GetCurrentUser();
+
+            string jsonPersBoards = await _wcDashboards.GetAsync("api/perdashboards/all/", $"{user.UserId}");
+            List<PersonalDashboard> persBoards = JsonConvert.DeserializeObject<List<PersonalDashboard>>(jsonPersBoards);
+
+            string jsonMultiBoards = await _wcDashboards.GetAsync("api/multidashboards/all/", $"{user.UserId}");
+            List<MultiDashboard> multiBoards = JsonConvert.DeserializeObject<List<MultiDashboard>>(jsonMultiBoards);
 
             BoardsPageViewModel viewmodel = new BoardsPageViewModel { PersonalDashboards = persBoards, MultiDashboards = multiBoards };
-
-            string jsonPersBoards = JsonConvert.SerializeObject(persBoards);
-            string jsonMultiBoards = JsonConvert.SerializeObject(multiBoards);
 
             ViewBag.jsonPersBoards = jsonPersBoards;
             ViewBag.jsonMultiBoards = jsonMultiBoards;
 
             return View("~/Views/Pages/Boards.cshtml", viewmodel);
         }
-        [HttpGet]
-        public async Task<IActionResult> AddPersonalBoard(BoardsPageViewModel nameOfBoard)
+
+        [HttpPost]
+        public async Task<IActionResult> AddPersonalBoard([FromForm] BoardsPageViewModel nameOfBoard)
         {
-            string userEmail = User.Identity.Name;
-            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            User user = await GetCurrentUser();
 
-            int numbOfPersBoards = await db.PerDashBoards.CountAsync(n => n.User == user);
-
-            db.PerDashBoards.Add(new PersonalDashboard
+            PersonalBoardViewModel newBoard = new PersonalBoardViewModel
             {
                 DashboardName = nameOfBoard.PersonalBoardName,
                 UserId = user.UserId,
-                PositionNo = numbOfPersBoards,
-            });
+            };
 
-            await db.SaveChangesAsync();
+            await _wcDashboards.PostAsync<PersonalBoardViewModel>("api/perdashboards/add/", newBoard);
 
             return RedirectToAction(nameof(ShowBoards));
         }
-        [HttpGet]
-        public async Task<IActionResult> AddMultiBoard(BoardsPageViewModel nameOfBoard)
+
+        [HttpPost]
+        public async Task<IActionResult> AddMultiBoard([FromForm] BoardsPageViewModel nameOfBoard)
         {
-            string userEmail = User.Identity.Name;
-            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            User user = await GetCurrentUser();
 
-            int numbOfPersBoards = await db.MultiDashBoards.CountAsync(n => n.User == user);
-
-            db.MultiDashBoards.Add(new MultiDashboard
+            MultiBoardViewModel newBoard = new MultiBoardViewModel
             {
                 DashboardName = nameOfBoard.MultiBoardName,
                 UserId = user.UserId,
-                PositionNo = numbOfPersBoards,
-            });
+            };
 
-            await db.SaveChangesAsync();
+            await _wcDashboards.PostAsync<MultiBoardViewModel>("api/multidashboards/add/", newBoard);
 
             return RedirectToAction(nameof(ShowBoards));
         }
-        [HttpGet]
-        public int test(int boardId)
-        {
-            return boardId;
-        }
-        [HttpGet]
-        public IActionResult PersonalBoard(int boardId)
-        {
-            PersonalBoardViewModel obj = new PersonalBoardViewModel {};
-            return View("~/Views/Pages/PersDashboard.cshtml", obj);
-        }
-        [HttpGet]
-        public void UpdatePersonalBoards(List<string> data)
-        {
-            List<int> numOfBoards = data.Select(s => int.Parse(s)).ToList();
-            int count = 0;
-            foreach (var idBoard in numOfBoards)
-            {
-                PersonalDashboard board = db.PerDashBoards.Where(x => x.Id == idBoard).FirstOrDefault();
-                board.PositionNo = count;
-                db.PerDashBoards.Update(board);
-                db.SaveChanges();
-                count++;
-            }
-        }
-        [HttpGet]
-        public void UpdateMultiBoards(List<string> data)
-        {
-            List<int> numOfBoards = data.Select(s => int.Parse(s)).ToList();
-            int count = 0;
-            foreach (var idBoard in numOfBoards)
-            {
-                MultiDashboard board = db.MultiDashBoards.Where(x => x.Id == idBoard).FirstOrDefault();
-                board.PositionNo = count;
-                db.MultiDashBoards.Update(board);
-                db.SaveChanges();
-                count++;
-            }
-        }
-        [HttpGet]
-        public void DeletePersonalBoard(int id)
-        {
-            db.PerDashBoards.Remove(db.PerDashBoards.Find(id));
-            db.SaveChanges();
-        }
-        [HttpGet]
-        public void DeleteMultiBoard(int id)
-        {
-            db.MultiDashBoards.Remove(db.MultiDashBoards.Find(id));
-            db.SaveChanges();
-        }
-        [HttpPost]
-        public JsonResult EditPersonalBoard([FromBody]EditPersonalBoardViewModel boardInfo)
-        {
-            int id = Int32.Parse(boardInfo.BoardId);
 
-            PersonalDashboard board = db.PerDashBoards.Find(id);
-            board.DashboardName = boardInfo.BoardName;
+        [HttpPut]
+        public async Task UpdatePersonalBoards([FromQuery] string ids)
+        {         
+            await _wcDashboards.PutAsync("api/perdashboards/update", "?ids=" + ids);
+        }
 
-            db.PerDashBoards.Update(board);
-            db.SaveChanges();
+        [HttpPut]
+        public async Task UpdateMultiBoards([FromQuery] string ids)
+        {
+            await _wcDashboards.PutAsync("api/multidashboards/update/", "?ids=" + ids);
+        }
 
+        [HttpDelete]
+        public async Task DeletePersonalBoard([FromQuery] int id)
+        {
+            await _wcDashboards.DeleteAsync("api/perdashboards/delete", "?id=" + id);
+        }
+
+        [HttpDelete]
+        public async Task DeleteMultiBoard([FromQuery] int id)
+        {
+            await _wcDashboards.DeleteAsync("api/multidashboards/delete", "?id=" + id);
+        }
+
+        [HttpPut]
+        public async Task<JsonResult> EditPersonalBoard([FromQuery] int id, [FromQuery] string boardInfo)
+        {
+            User user = await GetCurrentUser();
+
+            await _wcDashboards.PutAsync("api/perdashboards/edit", "?id=" + id + "&boardInfo=" + boardInfo);
+
+            string jsonPersBoards = await _wcDashboards.GetAsync("api/perdashboards/all/", $"{user.UserId}");
+
+            return Json(new { jsonBoards = jsonPersBoards });
+        }
+
+        [HttpPut]
+        public async Task<JsonResult> EditMultiBoard([FromQuery] int id, [FromQuery] string boardInfo)
+        {
+            User user = await GetCurrentUser();
+
+            await _wcDashboards.PutAsync("api/multidashboards/edit", "?id=" + id + "&boardInfo=" + boardInfo);
+
+            string jsonPersBoards = await _wcDashboards.GetAsync("api/multidashboards/all/", $"{user.UserId}");
+
+            return Json(new { jsonBoards = jsonPersBoards });
+        }
+
+        private async Task<User> GetCurrentUser()
+        {
             string userEmail = User.Identity.Name;
-            User user = db.Users.FirstOrDefault(u => u.Email == userEmail);
-            int userId = user.UserId;
-
-            List<PersonalDashboard> listOfBoards = db.PerDashBoards.Where(p => p.UserId == userId).ToList();
-            string boards = JsonConvert.SerializeObject(listOfBoards);
-
-            return Json(new { jsonBoards = boards });
-        }
-        [HttpPost]
-        public JsonResult EditMultiBoard([FromBody] EditPersonalBoardViewModel boardInfo)
-        {
-            int id = Int32.Parse(boardInfo.BoardId);
-
-            MultiDashboard board = db.MultiDashBoards.Find(id);
-            board.DashboardName = boardInfo.BoardName;
-
-            db.MultiDashBoards.Update(board);
-            db.SaveChanges();
-
-            string userEmail = User.Identity.Name;
-            User user = db.Users.FirstOrDefault(u => u.Email == userEmail);
-            int userId = user.UserId;
-
-            List<MultiDashboard> listOfBoards = db.MultiDashBoards.Where(p => p.UserId == userId).ToList();
-            string boards = JsonConvert.SerializeObject(listOfBoards);
-
-            return Json(new { jsonBoards = boards });
+            string userJson = await _wcAccounts.GetAsync("api/accounts/users/", userEmail);
+            User user = JsonConvert.DeserializeObject<User>(userJson);
+            return user;
         }
     }
 }

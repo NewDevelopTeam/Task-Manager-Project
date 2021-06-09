@@ -1,37 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using PlusDashData.Data;
 
 namespace TaskManager.Controllers
 { 
     public class PagesController : Controller
     {
-        public AccountContext db;
-        public PagesController(AccountContext context)
+        [HttpGet]
+        public IActionResult Registration()
         {
-            db = context;
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Boards", "Pages");
+            }
+            return View("~/Views/Account/Registration.cshtml");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Boards", "Pages");
+            }
+            return View("~/Views/Account/Login.cshtml");
         }
 
         [Authorize]
-        public async Task<IActionResult> Cards()
+        public IActionResult Cards()
         {
-            string userEmail = User.Identity.Name;
-            User user = await db.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
-            int userId = user.UserId;
-
-             List<PersonalCard> listOfCards = db.PerCards.Where(p => p.UserId == userId).ToList();
-
-             string str  = JsonConvert.SerializeObject(listOfCards);
-
-            ViewBag.strCards = str;
-
-            return View();
+            return RedirectToAction("ShowCards", "Cards");
         }
 
         [Authorize]
