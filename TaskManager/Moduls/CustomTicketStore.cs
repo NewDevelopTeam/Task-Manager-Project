@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PlusDashData.Data;
+using Newtonsoft.Json;
+using PlusDashData.Data.Models.Accounts;
+using TaskManager.Models;
+using TaskManager.Services.WebClients.Interfaces;
 
 // This class implements ITicketStore interface for managing user's auth data on a server-side storage
 
@@ -78,10 +80,13 @@ namespace TaskManager.Moduls
             using (var scope = _services.BuildServiceProvider().CreateScope())
             {
                 var context = scope.ServiceProvider.GetService<AccountContext>();
+                var webClient = scope.ServiceProvider.GetService<IAccountsWebClient>();
 
                 string userEmail = ticket.Principal.Identity.Name;
 
-                var id = context.Users.Where(prop => prop.Email == userEmail).FirstOrDefault().UserId;
+                var responseJSON = await webClient.GetAsync("/api/accounts/users/", userEmail);
+                var response = JsonConvert.DeserializeObject<User>(responseJSON);
+                var id = response.UserId;
 
                 var authenticationTicket = new UserSession()
                 {
