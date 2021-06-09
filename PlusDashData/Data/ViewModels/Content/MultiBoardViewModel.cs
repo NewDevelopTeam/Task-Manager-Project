@@ -2,7 +2,7 @@
 
 namespace PlusDashData.Data.ViewModels.Content
 {
-    public class PersonalBoardViewModel
+    public class MultiBoardViewModel
     {
         public int UserId { get; set; }
 

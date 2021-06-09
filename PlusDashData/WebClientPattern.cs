@@ -8,7 +8,7 @@ namespace PlusDashData
 {
     public class WebClientPattern
     {
-        private static HttpClient _client;
+        private HttpClient _client;
         public WebClientPattern(HttpClient client)
         {
             _client = client;
