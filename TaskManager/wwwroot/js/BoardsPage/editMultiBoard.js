@@ -21,8 +21,8 @@ function MultiBoardHandler() {
 			BoardId: $('.edit-multiBoard__button').attr('id'),
 			BoardName: $('.multiBoard-adding__form').val(),
 		};
-		console.log(`BoardId: ${boardInfo.BoardId}, BoardName: ${boardInfo.BoardName}`);
-		EditMultiBoard(boardInfo);
+		//console.log(`BoardId: ${boardInfo.BoardId}, BoardName: ${boardInfo.BoardName}`);
+		EditMultiBoard(boardInfo.BoardId, boardInfo.BoardName);
 		$('#edit-multiBoard').modal('hide');
 	})
 
@@ -30,12 +30,11 @@ function MultiBoardHandler() {
 		$('.board-adding__form').val('');
 	})
 }
-function EditMultiBoard(boardInfo) {
+function EditMultiBoard(id, info) {
 	$.ajax({
-		method: 'POST',
-		url: 'https://localhost:44363/boards/editmultiboard',
+		method: 'PUT',
+		url: 'https://localhost:44363/boards/editmultiboard?' + $.param({ id: id, boardInfo: info }),
 		contentType: 'application/json',
-		data: JSON.stringify(boardInfo),
 		success: function (data) {
 			window.location.href = "/pages/boards";
 		},

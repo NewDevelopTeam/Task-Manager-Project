@@ -21,8 +21,8 @@ function PersonalBoardHandler(){
 			BoardId: $('.edit-personalBoard__button').attr('id'),
 			BoardName: $('.personalBoard-adding__form').val(),
 		};
-		console.log(`BoardId: ${boardInfo.BoardId}, BoardName: ${boardInfo.BoardName}`);
-		EditPersonalBoard(boardInfo);
+		//console.log(`BoardId: ${boardInfo.BoardId}, BoardName: ${boardInfo.BoardName}`);
+		EditPersonalBoard(boardInfo.BoardId, boardInfo.BoardName);
 		$('#edit-personalBoard').modal('hide');
 	})
 
@@ -30,12 +30,11 @@ function PersonalBoardHandler(){
 		$('.board-adding__form').val('');
 	})
 }
-function EditPersonalBoard(boardInfo) {
+function EditPersonalBoard(id, info) {
 	$.ajax({
-		method: 'POST',
-		url: 'https://localhost:44363/boards/editpersonalboard',
+		method: 'PUT',
+		url: 'https://localhost:44363/boards/editpersonalboard?' + $.param({ id: id, boardInfo: info }),
 		contentType: 'application/json',
-		data: JSON.stringify(boardInfo),
 		success: function (data) {
 			window.location.href = "/pages/boards";
 		},

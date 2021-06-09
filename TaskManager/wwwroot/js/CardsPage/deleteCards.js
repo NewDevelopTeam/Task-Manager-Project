@@ -25,7 +25,7 @@ function DeleteCard(idCard) {
 	var request = new XMLHttpRequest();
 	let url = new URL('https://localhost:44363/cards/deletecard');
 	url.searchParams.set('id', idCard);
-	request.open('GET', url, true);
+	request.open('DELETE', url, true);
 	request.setRequestHeader('Content-Type', 'application/json');
 	request.onload = function () {
 		if (this.status >= 200 && this.status < 400) {

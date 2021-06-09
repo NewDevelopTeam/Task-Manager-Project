@@ -14,7 +14,8 @@ const sortable = new Sortable(listContainer, {
 	filter: '.isNotDraggable',
 	onSort: function () {
 		var sequenceOfIds = sortable.toArray();
-		UpdatePositions(sequenceOfIds);
+		var ids = sequenceOfIds.join("&ids=");
+		UpdatePositions(ids);
 	},
 	onStart: function () {
 		$('html').addClass("draggable-cursor");
@@ -25,9 +26,9 @@ const sortable = new Sortable(listContainer, {
 });
 function UpdatePositions(sequenceOfIds) {
 	var request = new XMLHttpRequest();
-	let url = new URL('https://localhost:44363/cards/updatecards');
-	url.searchParams.set('ids', JSON.stringify(sequenceOfIds));
-	request.open('GET', url, true);
+	let url = new URL('https://localhost:44363/cards/updatepositionscards');
+	url.searchParams.set('ids', sequenceOfIds);
+	request.open('PUT', url, true);
 	request.setRequestHeader('Content-Type', 'application/json');
 	request.onload = function () {
 		if (!this.status >= 200 && !this.status < 400) {

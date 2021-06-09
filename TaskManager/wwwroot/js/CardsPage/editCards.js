@@ -1,6 +1,4 @@
-﻿
-
-const listOfCards = document.querySelector('.listofCards');
+﻿const listOfCards = document.querySelector('.listofCards');
 const editForm = document.getElementById('edit-card');
 const editFormConfirmation = editForm.querySelector('.edit-card__button');
 
@@ -45,7 +43,7 @@ function EditCard(idCard, textCard) {
 	let url = new URL('https://localhost:44363/cards/editcard');
 	url.searchParams.set('id', idCard);
 	url.searchParams.set('description', textCard);
-	request.open('GET', url, true);
+	request.open('PUT', url, true);
 	request.setRequestHeader('Content-Type', 'application/json');
 	request.onload = function () {
 		if (this.status >= 200 && this.status < 400) {

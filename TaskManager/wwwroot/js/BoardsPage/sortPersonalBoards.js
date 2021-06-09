@@ -14,7 +14,8 @@ $(document).ready(function () {
 		filter: '.isNotDraggable',
 		onSort: function () {
 			var boardsPositions = sortable.toArray();
-			SavePersonalBoardsPositions(boardsPositions)
+			var boardsPositionsPattern = boardsPositions.join("&ids=");
+			SavePersonalBoardsPositions(boardsPositionsPattern)
 		},
 		onStart: function () {
 			$('html').addClass("draggable-cursor");
@@ -27,10 +28,9 @@ $(document).ready(function () {
 
 function SavePersonalBoardsPositions(positions) {
 	$.ajax({
-		method: 'GET',
-		url: 'https://localhost:44363/boards/updatepersonalboards',
+		method: 'PUT',
+		url: 'https://localhost:44363/boards/updatepersonalboards?' + $.param({ ids: positions }),
 		contentType: 'application/json',
-		data: $.param({ data: positions }, true),
 		error: function () {
 			alert("Произошел сбой");
         }

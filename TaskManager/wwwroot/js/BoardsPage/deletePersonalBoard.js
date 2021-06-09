@@ -10,10 +10,9 @@
 })
 function DeleteBoard(idBoard) {
 	$.ajax({
-		method: 'GET',
-		url: 'https://localhost:44363/boards/deletepersonalboard',
-		contentType: 'application/json',
-		data: $.param({ id: idBoard }, true),
+		type: 'DELETE',
+		url: 'https://localhost:44363/boards/deletepersonalboard?' + $.param({ id: idBoard }),
+		contentType: 'application/json', 
 		success: function () {
 			window.location.href = "/pages/boards";
 		},
