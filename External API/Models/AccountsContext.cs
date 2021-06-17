@@ -8,7 +8,7 @@ namespace Accounts_API
         public DbSet<User> Users { get; set; }
         public AccountsContext(DbContextOptions<AccountsContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            
         }
     }
 }

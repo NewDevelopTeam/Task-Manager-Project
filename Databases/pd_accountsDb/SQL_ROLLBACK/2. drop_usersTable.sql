@@ -1,0 +1,5 @@
+USE pdAccountsDb
+GO
+
+IF OBJECT_ID('Users') IS NOT NULL
+DROP TABLE Users

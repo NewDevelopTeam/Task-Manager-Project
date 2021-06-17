@@ -1,0 +1,11 @@
+USE pdAccountsDb
+GO
+
+IF OBJECT_ID('Users') IS NULL
+CREATE TABLE Users
+(
+	UserId INT IDENTITY(100000, 1) PRIMARY KEY,
+	Email NVARCHAR(50) NOT NULL,
+	ValidatedEmail BIT NOT NULL,
+	Password NVARCHAR(MAX) NOT NULL
+)

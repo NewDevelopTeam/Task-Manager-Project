@@ -1,0 +1,11 @@
+USE pdDashboardsDb
+GO
+
+IF OBJECT_ID('PerCards') IS NULL
+CREATE TABLE PerCards
+(
+	Id INT IDENTITY(100000, 1) PRIMARY KEY,
+	CardDescription NVARCHAR(50),
+	RowNo INT NOT NULL,
+	UserId INT NOT NULL
+)

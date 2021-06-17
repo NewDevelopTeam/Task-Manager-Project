@@ -10,7 +10,7 @@ namespace Dashboards_API.Models
         public DbSet<MultiDashboard> MultiDashBoards { get; set; }
         public DashboardsContext(DbContextOptions<DashboardsContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            
         }
     }
 }

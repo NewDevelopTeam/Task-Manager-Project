@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager", "TaskManager\TaskManager.csproj", "{5AFD8427-6C01-4971-981E-8CFD93B47EE8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{17933205-893B-41ED-B521-7910A4BFAFB9} = {17933205-893B-41ED-B521-7910A4BFAFB9}
+		{7BCC2E41-F034-40F2-86FF-18CBDDA51A2C} = {7BCC2E41-F034-40F2-86FF-18CBDDA51A2C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlusDashData", "PlusDashData\PlusDashData.csproj", "{15AC9F56-A2B1-4EBE-AA3A-1B7ED7AB408F}"
 EndProject
